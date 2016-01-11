@@ -1,0 +1,10 @@
+D:\Teamwork - HQC\PokerGame\Poker\bin\Debug\Poker.exe.config
+D:\Teamwork - HQC\PokerGame\Poker\bin\Debug\Poker.exe
+D:\Teamwork - HQC\PokerGame\Poker\bin\Debug\Poker.pdb
+D:\Teamwork - HQC\PokerGame\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+D:\Teamwork - HQC\PokerGame\Poker\obj\Debug\Poker.AddChips.resources
+D:\Teamwork - HQC\PokerGame\Poker\obj\Debug\Poker.Form1.resources
+D:\Teamwork - HQC\PokerGame\Poker\obj\Debug\Poker.Properties.Resources.resources
+D:\Teamwork - HQC\PokerGame\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+D:\Teamwork - HQC\PokerGame\Poker\obj\Debug\Poker.exe
+D:\Teamwork - HQC\PokerGame\Poker\obj\Debug\Poker.pdb
