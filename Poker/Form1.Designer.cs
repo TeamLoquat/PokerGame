@@ -44,10 +44,10 @@
             this.textBoxBot1Chips = new System.Windows.Forms.TextBox();
             this.tbPot = new System.Windows.Forms.TextBox();
             this.bOptions = new System.Windows.Forms.Button();
-            this.bBB = new System.Windows.Forms.Button();
-            this.tbSB = new System.Windows.Forms.TextBox();
-            this.bSB = new System.Windows.Forms.Button();
-            this.tbBB = new System.Windows.Forms.TextBox();
+            this.buttonBB = new System.Windows.Forms.Button();
+            this.textBoxSB = new System.Windows.Forms.TextBox();
+            this.buttonSB = new System.Windows.Forms.Button();
+            this.textBoxBB = new System.Windows.Forms.TextBox();
             this.b5Status = new System.Windows.Forms.Label();
             this.b4Status = new System.Windows.Forms.Label();
             this.b3Status = new System.Windows.Forms.Label();
@@ -55,7 +55,7 @@
             this.playerStatus = new System.Windows.Forms.Label();
             this.b2Status = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbRaise = new System.Windows.Forms.TextBox();
+            this.textBoxRaise = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonFold
@@ -216,41 +216,41 @@
             this.bOptions.UseVisualStyleBackColor = true;
             this.bOptions.Click += new System.EventHandler(this.bOptions_Click);
             // 
-            // bBB
+            // bu
             // 
-            this.bBB.Location = new System.Drawing.Point(12, 254);
-            this.bBB.Name = "bBB";
-            this.bBB.Size = new System.Drawing.Size(75, 23);
-            this.bBB.TabIndex = 16;
-            this.bBB.Text = "Big Blind";
-            this.bBB.UseVisualStyleBackColor = true;
-            this.bBB.Click += new System.EventHandler(this.bBB_Click);
+            this.buttonBB.Location = new System.Drawing.Point(12, 254);
+            this.buttonBB.Name = "buttonBB";
+            this.buttonBB.Size = new System.Drawing.Size(75, 23);
+            this.buttonBB.TabIndex = 16;
+            this.buttonBB.Text = "Big Blind";
+            this.buttonBB.UseVisualStyleBackColor = true;
+            this.buttonBB.Click += new System.EventHandler(this.bBB_Click);
             // 
-            // tbSB
+            // textBoxSB
             // 
-            this.tbSB.Location = new System.Drawing.Point(12, 228);
-            this.tbSB.Name = "tbSB";
-            this.tbSB.Size = new System.Drawing.Size(75, 20);
-            this.tbSB.TabIndex = 17;
-            this.tbSB.Text = "250";
+            this.textBoxSB.Location = new System.Drawing.Point(12, 228);
+            this.textBoxSB.Name = "textBoxSB";
+            this.textBoxSB.Size = new System.Drawing.Size(75, 20);
+            this.textBoxSB.TabIndex = 17;
+            this.textBoxSB.Text = "250";
             // 
-            // bSB
+            // buttonSB
             // 
-            this.bSB.Location = new System.Drawing.Point(12, 199);
-            this.bSB.Name = "bSB";
-            this.bSB.Size = new System.Drawing.Size(75, 23);
-            this.bSB.TabIndex = 18;
-            this.bSB.Text = "Small Blind";
-            this.bSB.UseVisualStyleBackColor = true;
-            this.bSB.Click += new System.EventHandler(this.bSB_Click);
+            this.buttonSB.Location = new System.Drawing.Point(12, 199);
+            this.buttonSB.Name = "buttonSB";
+            this.buttonSB.Size = new System.Drawing.Size(75, 23);
+            this.buttonSB.TabIndex = 18;
+            this.buttonSB.Text = "Small Blind";
+            this.buttonSB.UseVisualStyleBackColor = true;
+            this.buttonSB.Click += new System.EventHandler(this.bSB_Click);
             // 
-            // tbBB
+            // textBoxBB
             // 
-            this.tbBB.Location = new System.Drawing.Point(12, 283);
-            this.tbBB.Name = "tbBB";
-            this.tbBB.Size = new System.Drawing.Size(75, 20);
-            this.tbBB.TabIndex = 19;
-            this.tbBB.Text = "500";
+            this.textBoxBB.Location = new System.Drawing.Point(12, 283);
+            this.textBoxBB.Name = "textBoxBB";
+            this.textBoxBB.Size = new System.Drawing.Size(75, 20);
+            this.textBoxBB.TabIndex = 19;
+            this.textBoxBB.Text = "500";
             // 
             // b5Status
             // 
@@ -309,13 +309,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Pot";
             // 
-            // tbRaise
+            // textBoxRaise
             // 
-            this.tbRaise.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.tbRaise.Location = new System.Drawing.Point(965, 713);
-            this.tbRaise.Name = "tbRaise";
-            this.tbRaise.Size = new System.Drawing.Size(108, 20);
-            this.tbRaise.TabIndex = 0;
+            this.textBoxRaise.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBoxRaise.Location = new System.Drawing.Point(965, 713);
+            this.textBoxRaise.Name = "textBoxRaise";
+            this.textBoxRaise.Size = new System.Drawing.Size(108, 20);
+            this.textBoxRaise.TabIndex = 0;
             // 
             // Form1
             // 
@@ -324,7 +324,7 @@
             this.BackgroundImage = global::Poker.Properties.Resources.poker_table___Copy;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1350, 739);
-            this.Controls.Add(this.tbRaise);
+            this.Controls.Add(this.textBoxRaise);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.b2Status);
             this.Controls.Add(this.playerStatus);
@@ -332,10 +332,10 @@
             this.Controls.Add(this.b3Status);
             this.Controls.Add(this.b4Status);
             this.Controls.Add(this.b5Status);
-            this.Controls.Add(this.tbBB);
-            this.Controls.Add(this.bSB);
-            this.Controls.Add(this.tbSB);
-            this.Controls.Add(this.bBB);
+            this.Controls.Add(this.textBoxBB);
+            this.Controls.Add(this.buttonSB);
+            this.Controls.Add(this.textBoxSB);
+            this.Controls.Add(this.buttonBB);
             this.Controls.Add(this.bOptions);
             this.Controls.Add(this.tbPot);
             this.Controls.Add(this.textBoxBot1Chips);
@@ -377,10 +377,10 @@
         private System.Windows.Forms.TextBox textBoxBot1Chips;
         private System.Windows.Forms.TextBox tbPot;
         private System.Windows.Forms.Button bOptions;
-        private System.Windows.Forms.Button bBB;
-        private System.Windows.Forms.TextBox tbSB;
-        private System.Windows.Forms.Button bSB;
-        private System.Windows.Forms.TextBox tbBB;
+        private System.Windows.Forms.Button buttonBB;
+        private System.Windows.Forms.TextBox textBoxSB;
+        private System.Windows.Forms.Button buttonSB;
+        private System.Windows.Forms.TextBox textBoxBB;
         private System.Windows.Forms.Label b5Status;
         private System.Windows.Forms.Label b4Status;
         private System.Windows.Forms.Label b3Status;
@@ -388,7 +388,7 @@
         private System.Windows.Forms.Label playerStatus;
         private System.Windows.Forms.Label b2Status;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbRaise;
+        private System.Windows.Forms.TextBox textBoxRaise;
 
 
 

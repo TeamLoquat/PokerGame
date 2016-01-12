@@ -18,32 +18,87 @@
         private const int NumberOfCardsInADeck = 52;
 
         #region Variables
-        ProgressBar progressBar = new ProgressBar();
-        public int Nm;
-        Panel playerPanel = new Panel();
-        Panel bot1Panel = new Panel();
-        Panel bot2Panel = new Panel();
-        Panel bot3Panel = new Panel();
-        Panel bot4Panel = new Panel();
-        Panel bot5Panel = new Panel();
-        int call = 500, foldedPlayers = 5;
-        public int Chips = 10000, bot1Chips = 10000, bot2Chips = 10000, bot3Chips = 10000, bot4Chips = 10000, bot5Chips = 10000;
-        double type, rounds = 0, bot1Power, bot2Power, bot3Power, bot4Power, bot5Power, pPower = 0, pType = -1, Raise = 0,
-        b1Type = -1, b2Type = -1, b3Type = -1, b4Type = -1, b5Type = -1;
-        bool bot1Turn = false, bot2Turn = false, bot3Turn = false, bot4Turn = false, bot5Turn = false;
-        bool B1Fturn = false, B2Fturn = false, B3Fturn = false, B4Fturn = false, B5Fturn = false;
-        private bool playerHasFolded, bot1HasFolded, bot2HasFolded, bot3HasFolded, bot4HasFolded, bot5HasFolded;
-        bool intsadded, changed;
-        int playerCall = 0, b1Call = 0, b2Call = 0, b3Call = 0, b4Call = 0, b5Call = 0, pRaise = 0, b1Raise = 0, b2Raise = 0, b3Raise = 0, b4Raise = 0, b5Raise = 0;
-        int height, width, winners = 0, Flop = 1, Turn = 2, River = 3, End = 4, maxLeft = 6;
-        int last = 123, raisedTurn = 1;
-        List<bool?> bools = new List<bool?>();
-        List<Type> win = new List<Type>();
-        List<string> CheckWinners = new List<string>();
-        List<int> ints = new List<int>();
-        bool PFturn = false, Pturn = true, restart = false, raising = false;
-        Poker.Type sorted;
-        string[] imagesPathsFromDirectory = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
+     // private ProgressBar progressBar = new ProgressBar(); - never used
+     // private int Nm; - never used
+        private readonly Panel playerPanel = new Panel();
+        private readonly Panel bot1Panel = new Panel();
+        private readonly Panel bot2Panel = new Panel();
+        private readonly Panel bot3Panel = new Panel();
+        private readonly Panel bot4Panel = new Panel();
+        private readonly Panel bot5Panel = new Panel();
+        private int call = 500; 
+        private int foldedPlayers = 5;
+        private int Chips = 10000;
+        private int bot1Chips = 10000;
+        private int bot2Chips = 10000;
+        private int bot3Chips = 10000;
+        private int bot4Chips = 10000;
+        private int bot5Chips = 10000;
+        private double type;
+        private double rounds;
+        private double bot1Power;
+        private double bot2Power;
+        private double bot3Power;
+        private double bot4Power;
+        private double bot5Power;
+        private double pPower;
+        private double pType = -1;
+        private double Raise;
+        private double b1Type = -1;
+        private double b2Type = -1;
+        private double b3Type = -1;
+        private double b4Type = -1;
+        private double b5Type = -1;
+        private bool bot1Turn;
+        private bool bot2Turn;
+        private bool bot3Turn;
+        private bool bot4Turn;
+        private bool bot5Turn;
+        private bool B1Fturn;
+        private bool B2Fturn;
+        private bool B3Fturn;
+        private bool B4Fturn;
+        private bool B5Fturn;
+        private bool playerHasFolded;
+        private bool bot1HasFolded;
+        private bool bot2HasFolded;
+        private bool bot3HasFolded;
+        private bool bot4HasFolded;
+        private bool bot5HasFolded;
+        private bool intsadded;
+        private bool changed;
+        private int playerCall;
+        private int b1Call;
+        private int b2Call;
+        private int b3Call;
+        private int b4Call;
+        private int b5Call;
+        private int pRaise;
+        private int b1Raise;
+        private int b2Raise;
+        private int b3Raise;
+        private int b4Raise;
+        private int b5Raise;
+        private int height; 
+        private int width;
+        private int winners;
+        private int Flop = 1;
+        private int Turn = 2;
+        private int River = 3;
+        private int End = 4;
+        private int maxLeft = 6;
+        private int last; // original value 123; - never used
+        private int raisedTurn = 1;
+        private List<bool?> bools = new List<bool?>();
+        private List<Type> win = new List<Type>();
+        private List<string> CheckWinners = new List<string>();
+        private List<int> ints = new List<int>();
+        private bool PFturn = false;
+        private bool Pturn = true;
+        private bool restart = false;
+        private bool raising = false;
+        private Poker.Type sorted;
+        private string[] imagesPathsFromDirectory = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
         /*string[] ImgLocation ={
                    "Assets\\Cards\\33.png","Assets\\Cards\\22.png",
                     "Assets\\Cards\\29.png","Assets\\Cards\\21.png",
@@ -55,18 +110,23 @@
                     "Assets\\Cards\\12.png",
                     "Assets\\Cards\\8.png","Assets\\Cards\\18.png",
                     "Assets\\Cards\\15.png","Assets\\Cards\\27.png"};*/
-        int[] reserve = new int[17];
-        Image[] deckImages = new Image[NumberOfCardsInADeck];
-        PictureBox[] holder = new PictureBox[52];
-        Timer timer = new Timer();
-        Timer updates = new Timer();
-        int t = 60, i, bigBlind = 500, smallBlind = 250, up = 10000000, turnCount = 0;
+        private int[] reserve = new int[17];
+        private Image[] deckImages = new Image[NumberOfCardsInADeck];
+        private PictureBox[] holder = new PictureBox[52];
+        private Timer timer = new Timer();
+        private Timer updates = new Timer();
+        private int t = 60;
+        private int i;
+        private int bigBlind = 500;
+        private int smallBlind = 250;
+        private int up = 10000000;
+        private int turnCount;
         #endregion
 
         public Form1()
         {
             //bools.Add(PFturn); bools.Add(B1Fturn); bools.Add(B2Fturn); bools.Add(B3Fturn); bools.Add(B4Fturn); bools.Add(B5Fturn);
-            call = bigBlind;
+            //call = bigBlind;
             MaximizeBox = false;
             MinimizeBox = false;
             updates.Start();
@@ -74,7 +134,7 @@
             width = this.Width;
             height = this.Height;
             Shuffle();
-            tbPot.Enabled = false;
+        //  tbPot.Enabled = false;
             textBoxPlayerChips.Enabled = false;
             textBoxBot1Chips.Enabled = false;
             textBoxBot2Chips.Enabled = false;
@@ -87,23 +147,23 @@
             textBoxBot3Chips.Text = "Chips : " + bot3Chips.ToString();
             textBoxBot4Chips.Text = "Chips : " + bot4Chips.ToString();
             textBoxBot5Chips.Text = "Chips : " + bot5Chips.ToString();
-            timer.Interval = 1 * 1 * 1000;
+            timer.Interval = 1000;   // 1 * 1 * 1000;
             timer.Tick += TimerTick;
-            updates.Interval = 1 * 1 * 100;
+            updates.Interval = 100; // 1 * 1 * 100;
             updates.Tick += Update_Tick;
-            tbBB.Visible = true;
-            tbSB.Visible = true;
-            bBB.Visible = true;
-            bSB.Visible = true;
-            tbBB.Visible = true;
-            tbSB.Visible = true;
-            bBB.Visible = true;
-            bSB.Visible = true;
-            tbBB.Visible = false;
-            tbSB.Visible = false;
-            bBB.Visible = false;
-            bSB.Visible = false;
-            tbRaise.Text = (bigBlind * 2).ToString();
+            //textBoxBB.Visible = true; -redundant
+            //textBoxSB.Visible = true; -redundant
+            //bu.Visible = true; -redundant
+            //buttonSB.Visible = true; -redundant
+            //textBoxBB.Visible = true; -redundant
+            //textBoxSB.Visible = true -redundant
+            buttonBB.Visible = true;
+            buttonSB.Visible = true;
+            textBoxBB.Visible = false;
+            textBoxSB.Visible = false;
+            buttonBB.Visible = false;
+            buttonSB.Visible = false;
+            textBoxRaise.Text = (bigBlind * 2).ToString();
         }
 
         async Task Shuffle()
@@ -122,7 +182,8 @@
             MinimizeBox = false;
             bool check = false;
             Bitmap backImage = new Bitmap("Assets\\Back\\Back.png");
-            int horizontal = 580, vertical = 480;
+            int horizontal = 580;
+            int vertical = 480;
             Random random = new Random();
             for (i = imagesPathsFromDirectory.Length; i > 0; i--)
             {
@@ -135,10 +196,10 @@
             for (i = 0; i < 17; i++)
             {
                 deckImages[i] = Image.FromFile(imagesPathsFromDirectory[i]);
-                var charsToRemove = new string[] { "Assets\\Cards\\", ".png" };
-                foreach (var c in charsToRemove)
+                string[] charsToRemove = new string[] { "Assets\\Cards\\", ".png" };
+                foreach (string str in charsToRemove)
                 {
-                    imagesPathsFromDirectory[i] = imagesPathsFromDirectory[i].Replace(c, string.Empty);
+                    imagesPathsFromDirectory[i] = imagesPathsFromDirectory[i].Replace(str, string.Empty);
                 }
 
                 reserve[i] = int.Parse(imagesPathsFromDirectory[i]) - 1;
@@ -2152,7 +2213,7 @@
 
             if (rounds == End && maxLeft == 6)
             {
-                string fixedLast = "qwerty";
+                string fixedLast = null;
                 if (!playerStatus.Text.Contains("Fold"))
                 {
                     fixedLast = "Player";
@@ -2267,11 +2328,11 @@
                 win.Clear();
                 sorted.Current = 0;
                 sorted.Power = 0;
-                for (int os = 0; os < 17; os++)
+                for (int x = 0; x < 17; x++)
                 {
-                    holder[os].Image = null;
-                    holder[os].Invalidate();
-                    holder[os].Visible = false;
+                    holder[x].Image = null;
+                    holder[x].Invalidate();
+                    holder[x].Visible = false;
                 }
 
                 tbPot.Text = "0";
@@ -2281,7 +2342,7 @@
             }
         }
 
-        void FixCall(Label status, ref int cCall, ref int cRaise, int options)
+        public void FixCall(Label status, ref int cCall, ref int cRaise, int options)
         {
             if (rounds != 4)
             {
@@ -2658,7 +2719,7 @@
             Winner(b5Type, bot5Power, "Bot 5", bot5Chips, fixedLast);
         }
 
-        void AI(int c1, int c2, ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower, double botCurrent)
+        public void AI(int c1, int c2, ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower, double botCurrent)
         {
             if (!sFTurn)
             {
@@ -3224,9 +3285,9 @@
 
             int parsedValue;
 
-            if (tbRaise.Text != string.Empty && int.TryParse(tbRaise.Text, out parsedValue))
+            if (textBoxRaise.Text != string.Empty && int.TryParse(textBoxRaise.Text, out parsedValue))
             {
-                if (Chips <= int.Parse(tbRaise.Text))
+                if (Chips <= int.Parse(textBoxRaise.Text))
                 {
                     buttonRaise.Text = "All in";
                 }
@@ -3304,26 +3365,26 @@
         {
             Rules(0, 1, "Player", ref pType, ref pPower, PFturn);
             int parsedValue;
-            if (tbRaise.Text != string.Empty && int.TryParse(tbRaise.Text, out parsedValue))
+            if (textBoxRaise.Text != string.Empty && int.TryParse(textBoxRaise.Text, out parsedValue))
             {
                 if (Chips > call)
                 {
-                    if (Raise * 2 > int.Parse(tbRaise.Text))
+                    if (Raise * 2 > int.Parse(textBoxRaise.Text))
                     {
-                        tbRaise.Text = (Raise * 2).ToString();
+                        textBoxRaise.Text = (Raise * 2).ToString();
                         MessageBox.Show("You must raise atleast twice as the current raise !");
                         return;
                     }
                     else
                     {
-                        if (Chips >= int.Parse(tbRaise.Text))
+                        if (Chips >= int.Parse(textBoxRaise.Text))
                         {
-                            call = int.Parse(tbRaise.Text);
-                            Raise = int.Parse(tbRaise.Text);
+                            call = int.Parse(textBoxRaise.Text);
+                            Raise = int.Parse(textBoxRaise.Text);
                             playerStatus.Text = "Raise " + call.ToString();
                             tbPot.Text = (int.Parse(tbPot.Text) + call).ToString();
                             buttonCall.Text = "Call";
-                            Chips -= int.Parse(tbRaise.Text);
+                            Chips -= int.Parse(textBoxRaise.Text);
                             raising = true;
                             last = 0;
                             pRaise = Convert.ToInt32(Raise);
@@ -3370,55 +3431,55 @@
 
         private void bOptions_Click(object sender, EventArgs e)
         {
-            this.tbBB.Text = this.bigBlind.ToString();
-            this.tbSB.Text = this.smallBlind.ToString();
-            if (this.tbBB.Visible == false)
+            this.textBoxBB.Text = this.bigBlind.ToString();
+            this.textBoxSB.Text = this.smallBlind.ToString();
+            if (this.textBoxBB.Visible == false)
             {
-                this.tbBB.Visible = true;
-                this.tbSB.Visible = true;
-                this.bBB.Visible = true;
-                this.bSB.Visible = true;
+                this.textBoxBB.Visible = true;
+                this.textBoxSB.Visible = true;
+                this.buttonBB.Visible = true;
+                this.buttonSB.Visible = true;
             }
             else
             {
-                this.tbBB.Visible = false;
-                this.tbSB.Visible = false;
-                this.bBB.Visible = false;
-                this.bSB.Visible = false;
+                this.textBoxBB.Visible = false;
+                this.textBoxSB.Visible = false;
+                this.buttonBB.Visible = false;
+                this.buttonSB.Visible = false;
             }
         }
 
         private void bSB_Click(object sender, EventArgs e)
         {
             int parsedValue;
-            if (this.tbSB.Text.Contains(",") || this.tbSB.Text.Contains("."))
+            if (this.textBoxSB.Text.Contains(",") || this.textBoxSB.Text.Contains("."))
             {
                 MessageBox.Show("The Small Blind can be only round number !");
-                this.tbSB.Text = this.smallBlind.ToString();
+                this.textBoxSB.Text = this.smallBlind.ToString();
                 return;
             }
 
-            if (!int.TryParse(this.tbSB.Text, out parsedValue))
+            if (!int.TryParse(this.textBoxSB.Text, out parsedValue))
             {
                 MessageBox.Show("This is a number only field");
-                this.tbSB.Text = this.smallBlind.ToString();
+                this.textBoxSB.Text = this.smallBlind.ToString();
                 return;
             }
 
-            if (int.Parse(this.tbSB.Text) > 100000)
+            if (int.Parse(this.textBoxSB.Text) > 100000)
             {
                 MessageBox.Show("The maximum of the Small Blind is 100 000 $");
-                this.tbSB.Text = this.smallBlind.ToString();
+                this.textBoxSB.Text = this.smallBlind.ToString();
             }
 
-            if (int.Parse(this.tbSB.Text) < 250)
+            if (int.Parse(this.textBoxSB.Text) < 250)
             {
                 MessageBox.Show("The minimum of the Small Blind is 250 $");
             }
 
-            if (int.Parse(this.tbSB.Text) >= 250 && int.Parse(this.tbSB.Text) <= 100000)
+            if (int.Parse(this.textBoxSB.Text) >= 250 && int.Parse(this.textBoxSB.Text) <= 100000)
             {
-                this.smallBlind = int.Parse(this.tbSB.Text);
+                this.smallBlind = int.Parse(this.textBoxSB.Text);
                 MessageBox.Show("The changes have been saved ! They will become available the next hand you play. ");
             }
         }
@@ -3426,34 +3487,34 @@
         private void bBB_Click(object sender, EventArgs e)
         {
             int parsedValue;
-            if (this.tbBB.Text.Contains(",") || this.tbBB.Text.Contains("."))
+            if (this.textBoxBB.Text.Contains(",") || this.textBoxBB.Text.Contains("."))
             {
                 MessageBox.Show("The Big Blind can be only round number !");
-                this.tbBB.Text = this.bigBlind.ToString();
+                this.textBoxBB.Text = this.bigBlind.ToString();
                 return;
             }
 
-            if (!int.TryParse(this.tbSB.Text, out parsedValue))
+            if (!int.TryParse(this.textBoxSB.Text, out parsedValue))
             {
                 MessageBox.Show("This is a number only field");
-                this.tbSB.Text = this.bigBlind.ToString();
+                this.textBoxSB.Text = this.bigBlind.ToString();
                 return;
             }
 
-            if (int.Parse(this.tbBB.Text) > 200000)
+            if (int.Parse(this.textBoxBB.Text) > 200000)
             {
                 MessageBox.Show("The maximum of the Big Blind is 200 000");
-                this.tbBB.Text = this.bigBlind.ToString();
+                this.textBoxBB.Text = this.bigBlind.ToString();
             }
 
-            if (int.Parse(this.tbBB.Text) < 500)
+            if (int.Parse(this.textBoxBB.Text) < 500)
             {
                 MessageBox.Show("The minimum of the Big Blind is 500 $");
             }
 
-            if (int.Parse(this.tbBB.Text) >= 500 && int.Parse(this.tbBB.Text) <= 200000)
+            if (int.Parse(this.textBoxBB.Text) >= 500 && int.Parse(this.textBoxBB.Text) <= 200000)
             {
-                this.bigBlind = int.Parse(this.tbBB.Text);
+                this.bigBlind = int.Parse(this.textBoxBB.Text);
                 MessageBox.Show("The changes have been saved ! They will become available the next hand you play. ");
             }
         }
