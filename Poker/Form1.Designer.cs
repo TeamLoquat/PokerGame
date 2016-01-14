@@ -33,7 +33,7 @@
             this.buttonCheck = new System.Windows.Forms.Button();
             this.buttonCall = new System.Windows.Forms.Button();
             this.buttonRaise = new System.Windows.Forms.Button();
-            this.pbTimer = new System.Windows.Forms.ProgressBar();
+            this.progressBartTimer = new System.Windows.Forms.ProgressBar();
             this.textBoxPlayerChips = new System.Windows.Forms.TextBox();
             this.buttonAddChips = new System.Windows.Forms.Button();
             this.tbAdd = new System.Windows.Forms.TextBox();
@@ -106,16 +106,16 @@
             this.buttonRaise.UseVisualStyleBackColor = true;
             this.buttonRaise.Click += new System.EventHandler(this.bRaise_Click);
             // 
-            // pbTimer
+            // progressBartTimer
             // 
-            this.pbTimer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.pbTimer.BackColor = System.Drawing.SystemColors.Control;
-            this.pbTimer.Location = new System.Drawing.Point(335, 641);
-            this.pbTimer.Maximum = 1000;
-            this.pbTimer.Name = "pbTimer";
-            this.pbTimer.Size = new System.Drawing.Size(667, 23);
-            this.pbTimer.TabIndex = 5;
-            this.pbTimer.Value = 1000;
+            this.progressBartTimer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.progressBartTimer.BackColor = System.Drawing.SystemColors.Control;
+            this.progressBartTimer.Location = new System.Drawing.Point(335, 641);
+            this.progressBartTimer.Maximum = 1000;
+            this.progressBartTimer.Name = "progressBartTimer";
+            this.progressBartTimer.Size = new System.Drawing.Size(667, 23);
+            this.progressBartTimer.TabIndex = 5;
+            this.progressBartTimer.Value = 1000;
             // 
             // textBoxPlayerChips
             // 
@@ -346,7 +346,7 @@
             this.Controls.Add(this.tbAdd);
             this.Controls.Add(this.buttonAddChips);
             this.Controls.Add(this.textBoxPlayerChips);
-            this.Controls.Add(this.pbTimer);
+            this.Controls.Add(this.progressBartTimer);
             this.Controls.Add(this.buttonRaise);
             this.Controls.Add(this.buttonCall);
             this.Controls.Add(this.buttonCheck);
@@ -366,7 +366,7 @@
         private System.Windows.Forms.Button buttonCheck;
         private System.Windows.Forms.Button buttonCall;
         private System.Windows.Forms.Button buttonRaise;
-        private System.Windows.Forms.ProgressBar pbTimer;
+        private System.Windows.Forms.ProgressBar progressBartTimer;
         private System.Windows.Forms.TextBox textBoxPlayerChips;
         private System.Windows.Forms.Button buttonAddChips;
         private System.Windows.Forms.TextBox tbAdd;

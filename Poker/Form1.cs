@@ -1,4 +1,6 @@
-﻿namespace Poker
+﻿using System.Runtime.CompilerServices;
+
+namespace Poker
 {
     using System;
     using System.Collections.Generic;
@@ -28,7 +30,7 @@
         private readonly Panel bot5Panel = new Panel();
         private int call = 500; 
         private int foldedPlayers = 5;
-        private int Chips = 10000;
+        private int playerChips = 10000;
         private int bot1Chips = 10000;
         private int bot2Chips = 10000;
         private int bot3Chips = 10000;
@@ -115,7 +117,7 @@
         private PictureBox[] holder = new PictureBox[52];
         private Timer timer = new Timer();
         private Timer updates = new Timer();
-        private int t = 60;
+        private int time = 60;
         private int i;
         private int bigBlind = 500;
         private int smallBlind = 250;
@@ -141,7 +143,7 @@
             textBoxBot3Chips.Enabled = false;
             textBoxBot4Chips.Enabled = false;
             textBoxBot5Chips.Enabled = false;
-            textBoxPlayerChips.Text = "Chips : " + Chips.ToString();
+            textBoxPlayerChips.Text = "Chips : " + playerChips.ToString();
             textBoxBot1Chips.Text = "Chips : " + bot1Chips.ToString();
             textBoxBot2Chips.Text = "Chips : " + bot2Chips.ToString();
             textBoxBot3Chips.Text = "Chips : " + bot3Chips.ToString();
@@ -150,7 +152,7 @@
             timer.Interval = 1000;   // 1 * 1 * 1000;
             timer.Tick += TimerTick;
             updates.Interval = 100; // 1 * 1 * 100;
-            updates.Tick += Update_Tick;
+            updates.Tick += UpdateChipsAmountOnUI;
             //textBoxBB.Visible = true; -redundant
             //textBoxSB.Visible = true; -redundant
             //bu.Visible = true; -redundant
@@ -166,7 +168,7 @@
             textBoxRaise.Text = (bigBlind * 2).ToString();
         }
 
-        async Task Shuffle()
+        public async Task Shuffle()
         {
             bools.Add(PFturn); 
             bools.Add(B1Fturn); 
@@ -600,7 +602,7 @@
             }
         }
 
-        async Task Turns()
+        public async Task Turns()
         {
             #region Rotating
             if (!PFturn)
@@ -610,9 +612,9 @@
                     FixCall(playerStatus, ref playerCall, ref pRaise, 1);
 
                     //MessageBox.Show("Player's Turn");
-                    pbTimer.Visible = true;
-                    pbTimer.Value = 1000;
-                    t = 60;
+                    progressBartTimer.Visible = true;
+                    progressBartTimer.Value = 1000;
+                    time = 60;
                     up = 10000000;
                     timer.Start();
                     buttonRaise.Enabled = true;
@@ -640,7 +642,7 @@
                 }
 
                 await CheckRaise(0, 0);
-                pbTimer.Visible = false;
+                progressBartTimer.Visible = false;
                 buttonRaise.Enabled = false;
                 buttonCall.Enabled = false;
                 buttonRaise.Enabled = false;
@@ -818,7 +820,7 @@
             }
         }
 
-        void Rules(int c1, int c2, string currentText, ref double current, ref double power, bool foldedTurn)
+        public void Rules(int c1, int c2, string currentText, ref double current, ref double power, bool foldedTurn)
         {
             if (c1 == 0 && c2 == 1)
             {
@@ -899,7 +901,7 @@
             }
         }
 
-        private void rStraightFlush(ref double current, ref double power, int[] st1, int[] st2, int[] st3, int[] st4)
+        public void rStraightFlush(ref double current, ref double power, int[] st1, int[] st2, int[] st3, int[] st4)
         {
             if (current >= -1)
             {
@@ -981,7 +983,7 @@
             }
         }
 
-        private void rFourOfAKind(ref double current, ref double power, int[] straight)
+        public void rFourOfAKind(ref double current, ref double power, int[] straight)
         {
             if (current >= -1)
             {
@@ -1007,7 +1009,7 @@
             }
         }
 
-        private void rFullHouse(ref double current, ref double power, ref bool done, int[] straight)
+        public void rFullHouse(ref double current, ref double power, ref bool done, int[] straight)
         {
             if (current >= -1)
             {
@@ -1063,7 +1065,7 @@
             }
         }
 
-        private void rFlush(ref double current, ref double power, ref bool vf, int[] straight)
+        public void rFlush(ref double current, ref double power, ref bool vf, int[] straight)
         {
             if (current >= -1)
             {
@@ -1566,7 +1568,7 @@
             }
         }
 
-        private void rStraight(ref double current, ref double power, int[] straight)
+        public void rStraight(ref double current, ref double power, int[] straight)
         {
             if (current >= -1)
             {
@@ -1602,7 +1604,7 @@
             }
         }
 
-        private void rThreeOfAKind(ref double current, ref double power, int[] straight)
+        public void rThreeOfAKind(ref double current, ref double power, int[] straight)
         {
             if (current >= -1)
             {
@@ -1630,7 +1632,7 @@
             }
         }
 
-        private void rTwoPair(ref double current, ref double power)
+        public void rTwoPair(ref double current, ref double power)
         {
             if (current >= -1)
             {
@@ -1688,7 +1690,7 @@
             }
         }
 
-        private void rPairTwoPair(ref double current, ref double power)
+        public void rPairTwoPair(ref double current, ref double power)
         {
             if (current >= -1)
             {
@@ -1797,7 +1799,7 @@
             }
         }
 
-        private void rPairFromHand(ref double current, ref double power)
+        public void rPairFromHand(ref double current, ref double power)
         {
             if (current >= -1)
             {
@@ -1876,7 +1878,7 @@
             }
         }
 
-        private void rHighCard(ref double current, ref double power)
+        public void rHighCard(ref double current, ref double power)
         {
             if (current == -1)
             {
@@ -1905,7 +1907,7 @@
             }
         }
 
-        void Winner(double current, double power, string currentText, int chips, string lastly)
+        public void Winner(double current, double power, string currentText, int chips, string lastly)
         {
             if (lastly == " ")
             {
@@ -1986,8 +1988,8 @@
                 {
                     if (CheckWinners.Contains("Player"))
                     {
-                        Chips += int.Parse(tbPot.Text) / winners;
-                        textBoxPlayerChips.Text = Chips.ToString();
+                        playerChips += int.Parse(tbPot.Text) / winners;
+                        textBoxPlayerChips.Text = playerChips.ToString();
 
                         //pPanel.Visible = true;
                     }
@@ -2039,7 +2041,7 @@
                 {
                     if (CheckWinners.Contains("Player"))
                     {
-                        Chips += int.Parse(tbPot.Text);
+                        playerChips += int.Parse(tbPot.Text);
 
                         //await Finish(1);
                         //pPanel.Visible = true;
@@ -2088,7 +2090,7 @@
             }
         }
 
-        async Task CheckRaise(int currentTurn, int raiseTurn)
+        public async Task CheckRaise(int currentTurn, int raiseTurn)
         {
             if (raising)
             {
@@ -2250,7 +2252,7 @@
                     Rules(10, 11, "Bot 5", ref b5Type, ref bot5Power, B5Fturn);
                 }
 
-                Winner(pType, pPower, "Player", Chips, fixedLast);
+                Winner(pType, pPower, "Player", playerChips, fixedLast);
                 Winner(b1Type, bot1Power, "Bot 1", bot1Chips, fixedLast);
                 Winner(b2Type, bot2Power, "Bot 2", bot2Chips, fixedLast);
                 Winner(b3Type, bot3Power, "Bot 3", bot3Chips, fixedLast);
@@ -2264,13 +2266,13 @@
                 B3Fturn = false;
                 B4Fturn = false;
                 B5Fturn = false;
-                if (Chips <= 0)
+                if (playerChips <= 0)
                 {
                     AddChips f2 = new AddChips();
                     f2.ShowDialog();
                     if (f2.a != 0)
                     {
-                        Chips = f2.a;
+                        playerChips = f2.a;
                         bot1Chips += f2.a;
                         bot2Chips += f2.a;
                         bot3Chips += f2.a;
@@ -2389,20 +2391,20 @@
             }
         }
 
-        async Task AllIn()
+        public async Task AllIn()
         {
             #region All in
-            if (Chips <= 0 && !intsadded)
+            if (playerChips <= 0 && !intsadded)
             {
                 if (playerStatus.Text.Contains("Raise"))
                 {
-                    ints.Add(Chips);
+                    ints.Add(playerChips);
                     intsadded = true;
                 }
 
                 if (playerStatus.Text.Contains("Call"))
                 {
-                    ints.Add(Chips);
+                    ints.Add(playerChips);
                     intsadded = true;
                 }
             }
@@ -2479,8 +2481,8 @@
                 int index = bools.IndexOf(false);
                 if (index == 0)
                 {
-                    Chips += int.Parse(tbPot.Text);
-                    textBoxPlayerChips.Text = Chips.ToString();
+                    playerChips += int.Parse(tbPot.Text);
+                    textBoxPlayerChips.Text = playerChips.ToString();
                     playerPanel.Visible = true;
                     MessageBox.Show("Player Wins");
                 }
@@ -2546,7 +2548,7 @@
 
         }
 
-        async Task Finish(int n)
+        public async Task Finish(int n)
         {
             if (n == 2)
             {
@@ -2626,7 +2628,7 @@
             sorted.Current = 0;
             sorted.Power = 0;
             tbPot.Text = "0";
-            t = 60; 
+            time = 60; 
             up = 10000000; 
             turnCount = 0;
             playerStatus.Text = string.Empty;
@@ -2635,13 +2637,13 @@
             b3Status.Text = string.Empty;
             b4Status.Text = string.Empty;
             b5Status.Text = string.Empty;
-            if (Chips <= 0)
+            if (playerChips <= 0)
             {
                 AddChips f2 = new AddChips();
                 f2.ShowDialog();
                 if (f2.a != 0)
                 {
-                    Chips = f2.a;
+                    playerChips = f2.a;
                     bot1Chips += f2.a;
                     bot2Chips += f2.a;
                     bot3Chips += f2.a;
@@ -2669,7 +2671,7 @@
             //await Turns();
         }
 
-        void FixWinners()
+        public void FixWinners()
         {
             win.Clear();
             sorted.Current = 0;
@@ -2711,7 +2713,7 @@
                 Rules(10, 11, "Bot 5", ref b5Type, ref bot5Power, B5Fturn);
             }
 
-            Winner(pType, pPower, "Player", Chips, fixedLast);
+            Winner(pType, pPower, "Player", playerChips, fixedLast);
             Winner(b1Type, bot1Power, "Bot 1", bot1Chips, fixedLast);
             Winner(b2Type, bot2Power, "Bot 2", bot2Chips, fixedLast);
             Winner(b3Type, bot3Power, "Bot 3", bot3Chips, fixedLast);
@@ -2781,17 +2783,17 @@
             }
         }
 
-        private void HighCard(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
+        public void HighCard(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
         {
             HP(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower, 20, 25);
         }
 
-        private void PairTable(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
+        public void PairTable(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
         {
             HP(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower, 16, 25);
         }
 
-        private void PairHand(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
+        public void PairHand(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
         {
             Random rPair = new Random();
             int rCall = rPair.Next(10, 16);
@@ -2812,7 +2814,7 @@
             }
         }
 
-        private void TwoPair(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
+        public void TwoPair(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
         {
             Random rPair = new Random();
             int rCall = rPair.Next(6, 11);
@@ -2833,7 +2835,7 @@
             }
         }
 
-        private void ThreeOfAKind(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        public void ThreeOfAKind(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
         {
             Random tk = new Random();
             int tCall = tk.Next(3, 7);
@@ -2856,7 +2858,7 @@
             }
         }
 
-        private void Straight(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        public void Straight(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
         {
             Random str = new Random();
             int sCall = str.Next(3, 6);
@@ -2877,7 +2879,7 @@
             }
         }
 
-        private void Flush(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        public void Flush(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
         {
             Random fsh = new Random();
             int fCall = fsh.Next(2, 6);
@@ -2885,7 +2887,7 @@
             Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fCall, fRaise);
         }
 
-        private void FullHouse(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        public void FullHouse(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
         {
             Random flh = new Random();
             int fhCall = flh.Next(1, 5);
@@ -2901,7 +2903,7 @@
             }
         }
 
-        private void FourOfAKind(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        public void FourOfAKind(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
         {
             Random fk = new Random();
             int fkCall = fk.Next(1, 4);
@@ -2912,7 +2914,7 @@
             }
         }
 
-        private void StraightFlush(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        public void StraightFlush(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
         {
             Random sf = new Random();
             int sfCall = sf.Next(1, 3);
@@ -2923,7 +2925,7 @@
             }
         }
 
-        private void Fold(ref bool sTurn, ref bool sFTurn, Label sStatus)
+        public void Fold(ref bool sTurn, ref bool sFTurn, Label sStatus)
         {
             raising = false;
             sStatus.Text = "Fold";
@@ -2931,14 +2933,14 @@
             sFTurn = true;
         }
 
-        private void Check(ref bool cTurn, Label cStatus)
+        public void Check(ref bool cTurn, Label cStatus)
         {
             cStatus.Text = "Check";
             cTurn = false;
             raising = false;
         }
 
-        private void Call(ref int sChips, ref bool sTurn, Label sStatus)
+        public void Call(ref int sChips, ref bool sTurn, Label sStatus)
         {
             raising = false;
             sTurn = false;
@@ -2947,7 +2949,7 @@
             tbPot.Text = (int.Parse(tbPot.Text) + call).ToString();
         }
 
-        private void Raised(ref int sChips, ref bool sTurn, Label sStatus)
+        public void Raised(ref int sChips, ref bool sTurn, Label sStatus)
         {
             sChips -= Convert.ToInt32(Raise);
             sStatus.Text = "Raise " + Raise;
@@ -2957,13 +2959,13 @@
             sTurn = false;
         }
 
-        private static double RoundN(int sChips, int n)
+        public static double RoundN(int sChips, int n)
         {
             double a = Math.Round((sChips / n) / 100d, 0) * 100;
             return a;
         }
 
-        private void HP(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower, int n, int n1)
+        public void HP(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower, int n, int n1)
         {
             Random rand = new Random();
             int rnd = rand.Next(1, 4);
@@ -3026,7 +3028,7 @@
             }
         }
 
-        private void PH(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int n, int n1, int r)
+        public void PH(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int n, int n1, int r)
         {
             Random rand = new Random();
             int rnd = rand.Next(1, 3);
@@ -3133,7 +3135,7 @@
             }
         }
 
-        void Smooth(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, int n, int r)
+        public void Smooth(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, int n, int r)
         {
             Random rand = new Random();
             int rnd = rand.Next(1, 3);
@@ -3187,24 +3189,34 @@
         }
 
         #region UI
-        private async void TimerTick(object sender, object e)
+        /// <summary>
+        /// Controlling time per turn;
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public async void TimerTick(object sender, object e)
         {
-            if (pbTimer.Value <= 0)
+            if (progressBartTimer.Value <= 0)
             {
                 PFturn = true;
                 await Turns();
             }
 
-            if (t > 0)
+            if (time > 0)
             {
-                t--;
-                pbTimer.Value = (t / 6) * 100;
+                time--;
+                progressBartTimer.Value = (time / 6) * 100;
             }
         }
 
-        private void Update_Tick(object sender, object e)
+        /// <summary>
+        /// Set value for chips amount in UI
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void UpdateChipsAmountOnUI(object sender, object e)
         {
-            if (Chips <= 0)
+           /* if (playerChips <= 0)
             {
                 textBoxPlayerChips.Text = "Chips : 0";
             }
@@ -3232,16 +3244,16 @@
             if (bot5Chips <= 0)
             {
                 textBoxBot5Chips.Text = "Chips : 0";
-            }
+            }*/
 
-            textBoxPlayerChips.Text = "Chips : " + Chips.ToString();
-            textBoxBot1Chips.Text = "Chips : " + bot1Chips.ToString();
-            textBoxBot2Chips.Text = "Chips : " + bot2Chips.ToString();
-            textBoxBot3Chips.Text = "Chips : " + bot3Chips.ToString();
-            textBoxBot4Chips.Text = "Chips : " + bot4Chips.ToString();
-            textBoxBot5Chips.Text = "Chips : " + bot5Chips.ToString();
+            textBoxPlayerChips.Text = string.Format("Chips : {0} ",playerChips);
+            textBoxBot1Chips.Text = string.Format("Chips : {0} ",bot1Chips);
+            textBoxBot2Chips.Text = string.Format("Chips : {0} ", bot2Chips);
+            textBoxBot3Chips.Text = string.Format("Chips : {0} ", bot3Chips);
+            textBoxBot4Chips.Text = string.Format("Chips : {0} ", bot4Chips);
+            textBoxBot5Chips.Text = string.Format("Chips : {0} ", bot5Chips);
 
-            if (Chips <= 0)
+            if (playerChips <= 0)
             {
                 Pturn = false;
                 PFturn = true;
@@ -3256,7 +3268,7 @@
                 up--;
             }
 
-            if (Chips >= call)
+            if (playerChips >= call)
             {
                 buttonCall.Text = "Call " + call.ToString();
             }
@@ -3278,7 +3290,7 @@
                 buttonCall.Enabled = false;
             }
 
-            if (Chips <= 0)
+            if (playerChips <= 0)
             {
                 buttonRaise.Enabled = false;
             }
@@ -3287,7 +3299,7 @@
 
             if (textBoxRaise.Text != string.Empty && int.TryParse(textBoxRaise.Text, out parsedValue))
             {
-                if (Chips <= int.Parse(textBoxRaise.Text))
+                if (playerChips <= int.Parse(textBoxRaise.Text))
                 {
                     buttonRaise.Text = "All in";
                 }
@@ -3297,13 +3309,13 @@
                 }
             }
 
-            if (Chips < call)
+            if (playerChips < call)
             {
                 buttonRaise.Enabled = false;
             }
         }
 
-        private async void bFold_Click(object sender, EventArgs e)
+        public async void bFold_Click(object sender, EventArgs e)
         {
             playerStatus.Text = "Fold";
             Pturn = false;
@@ -3311,7 +3323,7 @@
             await Turns();
         }
 
-        private async void bCheck_Click(object sender, EventArgs e)
+        public async void bCheck_Click(object sender, EventArgs e)
         {
             if (call <= 0)
             {
@@ -3327,13 +3339,13 @@
             await Turns();
         }
 
-        private async void bCall_Click(object sender, EventArgs e)
+        public async void bCall_Click(object sender, EventArgs e)
         {
             Rules(0, 1, "Player", ref pType, ref pPower, PFturn);
-            if (Chips >= call)
+            if (playerChips >= call)
             {
-                Chips -= call;
-                textBoxPlayerChips.Text = "Chips : " + Chips.ToString();
+                playerChips -= call;
+                textBoxPlayerChips.Text = "Chips : " + playerChips.ToString();
                 if (tbPot.Text != string.Empty)
                 {
                     tbPot.Text = (int.Parse(tbPot.Text) + call).ToString();
@@ -3347,27 +3359,27 @@
                 playerStatus.Text = "Call " + call;
                 playerCall = call;
             }
-            else if (Chips <= call && call > 0)
+            else if (playerChips <= call && call > 0)
             {
-                tbPot.Text = (int.Parse(tbPot.Text) + Chips).ToString();
-                playerStatus.Text = "All in " + Chips;
-                Chips = 0;
-                textBoxPlayerChips.Text = "Chips : " + Chips.ToString();
+                tbPot.Text = (int.Parse(tbPot.Text) + playerChips).ToString();
+                playerStatus.Text = "All in " + playerChips;
+                playerChips = 0;
+                textBoxPlayerChips.Text = "Chips : " + playerChips.ToString();
                 Pturn = false;
                 buttonFold.Enabled = false;
-                playerCall = Chips;
+                playerCall = playerChips;
             }
 
             await Turns();
         }
 
-        private async void bRaise_Click(object sender, EventArgs e)
+        public async void bRaise_Click(object sender, EventArgs e)
         {
             Rules(0, 1, "Player", ref pType, ref pPower, PFturn);
             int parsedValue;
             if (textBoxRaise.Text != string.Empty && int.TryParse(textBoxRaise.Text, out parsedValue))
             {
-                if (Chips > call)
+                if (playerChips > call)
                 {
                     if (Raise * 2 > int.Parse(textBoxRaise.Text))
                     {
@@ -3377,25 +3389,25 @@
                     }
                     else
                     {
-                        if (Chips >= int.Parse(textBoxRaise.Text))
+                        if (playerChips >= int.Parse(textBoxRaise.Text))
                         {
                             call = int.Parse(textBoxRaise.Text);
                             Raise = int.Parse(textBoxRaise.Text);
                             playerStatus.Text = "Raise " + call.ToString();
                             tbPot.Text = (int.Parse(tbPot.Text) + call).ToString();
                             buttonCall.Text = "Call";
-                            Chips -= int.Parse(textBoxRaise.Text);
+                            playerChips -= int.Parse(textBoxRaise.Text);
                             raising = true;
                             last = 0;
                             pRaise = Convert.ToInt32(Raise);
                         }
                         else
                         {
-                            call = Chips;
-                            Raise = Chips;
-                            tbPot.Text = (int.Parse(tbPot.Text) + Chips).ToString();
+                            call = playerChips;
+                            Raise = playerChips;
+                            tbPot.Text = (int.Parse(tbPot.Text) + playerChips).ToString();
                             playerStatus.Text = "Raise " + call.ToString();
-                            Chips = 0;
+                            playerChips = 0;
                             raising = true;
                             last = 0;
                             pRaise = Convert.ToInt32(Raise);
@@ -3413,12 +3425,12 @@
             await Turns();
         }
 
-        private void bAdd_Click(object sender, EventArgs e)
+        public void bAdd_Click(object sender, EventArgs e)
         {
             if (tbAdd.Text == string.Empty) { }
             else
             {
-                Chips += int.Parse(tbAdd.Text);
+                playerChips += int.Parse(tbAdd.Text);
                 bot1Chips += int.Parse(tbAdd.Text);
                 bot2Chips += int.Parse(tbAdd.Text);
                 bot3Chips += int.Parse(tbAdd.Text);
@@ -3426,10 +3438,10 @@
                 bot5Chips += int.Parse(tbAdd.Text);
             }
 
-            this.textBoxPlayerChips.Text = "Chips : " + this.Chips.ToString();
+            this.textBoxPlayerChips.Text = "Chips : " + this.playerChips.ToString();
         }
 
-        private void bOptions_Click(object sender, EventArgs e)
+        public void bOptions_Click(object sender, EventArgs e)
         {
             this.textBoxBB.Text = this.bigBlind.ToString();
             this.textBoxSB.Text = this.smallBlind.ToString();
@@ -3449,7 +3461,7 @@
             }
         }
 
-        private void bSB_Click(object sender, EventArgs e)
+        public void bSB_Click(object sender, EventArgs e)
         {
             int parsedValue;
             if (this.textBoxSB.Text.Contains(",") || this.textBoxSB.Text.Contains("."))
@@ -3484,7 +3496,7 @@
             }
         }
 
-        private void bBB_Click(object sender, EventArgs e)
+        public void bBB_Click(object sender, EventArgs e)
         {
             int parsedValue;
             if (this.textBoxBB.Text.Contains(",") || this.textBoxBB.Text.Contains("."))
@@ -3519,7 +3531,7 @@
             }
         }
 
-        private void Layout_Change(object sender, LayoutEventArgs e)
+        public void Layout_Change(object sender, LayoutEventArgs e)
         {
             this.width = this.Width;
             this.height = this.Height;
