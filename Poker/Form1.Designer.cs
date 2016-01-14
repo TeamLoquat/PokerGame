@@ -33,16 +33,16 @@
             this.buttonCheck = new System.Windows.Forms.Button();
             this.buttonCall = new System.Windows.Forms.Button();
             this.buttonRaise = new System.Windows.Forms.Button();
-            this.progressBartTimer = new System.Windows.Forms.ProgressBar();
+            this.progressBarTimer = new System.Windows.Forms.ProgressBar();
             this.textBoxPlayerChips = new System.Windows.Forms.TextBox();
             this.buttonAddChips = new System.Windows.Forms.Button();
-            this.tbAdd = new System.Windows.Forms.TextBox();
+            this.textBoxAdd = new System.Windows.Forms.TextBox();
             this.textBoxBot5Chips = new System.Windows.Forms.TextBox();
             this.textBoxBot4Chips = new System.Windows.Forms.TextBox();
             this.textBoxBot3Chips = new System.Windows.Forms.TextBox();
             this.textBoxBot2Chips = new System.Windows.Forms.TextBox();
             this.textBoxBot1Chips = new System.Windows.Forms.TextBox();
-            this.tbPot = new System.Windows.Forms.TextBox();
+            this.textBoxPot = new System.Windows.Forms.TextBox();
             this.bOptions = new System.Windows.Forms.Button();
             this.buttonBB = new System.Windows.Forms.Button();
             this.textBoxSB = new System.Windows.Forms.TextBox();
@@ -52,7 +52,7 @@
             this.b4Status = new System.Windows.Forms.Label();
             this.b3Status = new System.Windows.Forms.Label();
             this.bot1Status = new System.Windows.Forms.Label();
-            this.playerStatus = new System.Windows.Forms.Label();
+            this.playerStatusTextLabel = new System.Windows.Forms.Label();
             this.b2Status = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxRaise = new System.Windows.Forms.TextBox();
@@ -68,7 +68,7 @@
             this.buttonFold.TabIndex = 0;
             this.buttonFold.Text = "Fold";
             this.buttonFold.UseVisualStyleBackColor = true;
-            this.buttonFold.Click += new System.EventHandler(this.bFold_Click);
+            this.buttonFold.Click += new System.EventHandler(this.ButtonFoldClick);
             // 
             // buttonCheck
             // 
@@ -80,7 +80,7 @@
             this.buttonCheck.TabIndex = 2;
             this.buttonCheck.Text = "Check";
             this.buttonCheck.UseVisualStyleBackColor = true;
-            this.buttonCheck.Click += new System.EventHandler(this.bCheck_Click);
+            this.buttonCheck.Click += new System.EventHandler(this.ButtonCheckClick);
             // 
             // buttonCall
             // 
@@ -92,7 +92,7 @@
             this.buttonCall.TabIndex = 3;
             this.buttonCall.Text = "Call";
             this.buttonCall.UseVisualStyleBackColor = true;
-            this.buttonCall.Click += new System.EventHandler(this.bCall_Click);
+            this.buttonCall.Click += new System.EventHandler(this.ButtonCallClick);
             // 
             // buttonRaise
             // 
@@ -104,18 +104,18 @@
             this.buttonRaise.TabIndex = 4;
             this.buttonRaise.Text = "Raise";
             this.buttonRaise.UseVisualStyleBackColor = true;
-            this.buttonRaise.Click += new System.EventHandler(this.bRaise_Click);
+            this.buttonRaise.Click += new System.EventHandler(this.ButtonRaiseClick);
             // 
-            // progressBartTimer
+            // progressBarTimer
             // 
-            this.progressBartTimer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.progressBartTimer.BackColor = System.Drawing.SystemColors.Control;
-            this.progressBartTimer.Location = new System.Drawing.Point(335, 641);
-            this.progressBartTimer.Maximum = 1000;
-            this.progressBartTimer.Name = "progressBartTimer";
-            this.progressBartTimer.Size = new System.Drawing.Size(667, 23);
-            this.progressBartTimer.TabIndex = 5;
-            this.progressBartTimer.Value = 1000;
+            this.progressBarTimer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.progressBarTimer.BackColor = System.Drawing.SystemColors.Control;
+            this.progressBarTimer.Location = new System.Drawing.Point(335, 641);
+            this.progressBarTimer.Maximum = 1000;
+            this.progressBarTimer.Name = "progressBarTimer";
+            this.progressBarTimer.Size = new System.Drawing.Size(667, 23);
+            this.progressBarTimer.TabIndex = 5;
+            this.progressBarTimer.Value = 1000;
             // 
             // textBoxPlayerChips
             // 
@@ -136,15 +136,15 @@
             this.buttonAddChips.TabIndex = 7;
             this.buttonAddChips.Text = "AddChips";
             this.buttonAddChips.UseVisualStyleBackColor = true;
-            this.buttonAddChips.Click += new System.EventHandler(this.bAdd_Click);
+            this.buttonAddChips.Click += new System.EventHandler(this.ButtonAddClick);
             // 
-            // tbAdd
+            // textBoxAdd
             // 
-            this.tbAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbAdd.Location = new System.Drawing.Point(93, 710);
-            this.tbAdd.Name = "tbAdd";
-            this.tbAdd.Size = new System.Drawing.Size(125, 20);
-            this.tbAdd.TabIndex = 8;
+            this.textBoxAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxAdd.Location = new System.Drawing.Point(93, 710);
+            this.textBoxAdd.Name = "textBoxAdd";
+            this.textBoxAdd.Size = new System.Drawing.Size(125, 20);
+            this.textBoxAdd.TabIndex = 8;
             // 
             // textBoxBot5Chips
             // 
@@ -195,15 +195,15 @@
             this.textBoxBot1Chips.TabIndex = 13;
             this.textBoxBot1Chips.Text = "Chips : 0";
             // 
-            // tbPot
+            // textBoxPot
             // 
-            this.tbPot.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbPot.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbPot.Location = new System.Drawing.Point(606, 217);
-            this.tbPot.Name = "tbPot";
-            this.tbPot.Size = new System.Drawing.Size(125, 23);
-            this.tbPot.TabIndex = 14;
-            this.tbPot.Text = "0";
+            this.textBoxPot.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxPot.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxPot.Location = new System.Drawing.Point(606, 217);
+            this.textBoxPot.Name = "textBoxPot";
+            this.textBoxPot.Size = new System.Drawing.Size(125, 23);
+            this.textBoxPot.TabIndex = 14;
+            this.textBoxPot.Text = "0";
             // 
             // bOptions
             // 
@@ -214,7 +214,7 @@
             this.bOptions.TabIndex = 15;
             this.bOptions.Text = "BB/SB";
             this.bOptions.UseVisualStyleBackColor = true;
-            this.bOptions.Click += new System.EventHandler(this.bOptions_Click);
+            this.bOptions.Click += new System.EventHandler(this.ButtonSBBBOptionClick);
             // 
             // bu
             // 
@@ -224,7 +224,7 @@
             this.buttonBB.TabIndex = 16;
             this.buttonBB.Text = "Big Blind";
             this.buttonBB.UseVisualStyleBackColor = true;
-            this.buttonBB.Click += new System.EventHandler(this.bBB_Click);
+            this.buttonBB.Click += new System.EventHandler(this.ButtonBigBlincdClick);
             // 
             // textBoxSB
             // 
@@ -242,7 +242,7 @@
             this.buttonSB.TabIndex = 18;
             this.buttonSB.Text = "Small Blind";
             this.buttonSB.UseVisualStyleBackColor = true;
-            this.buttonSB.Click += new System.EventHandler(this.bSB_Click);
+            this.buttonSB.Click += new System.EventHandler(this.ButtonSmallBlindClick);
             // 
             // textBoxBB
             // 
@@ -284,13 +284,13 @@
             this.bot1Status.Size = new System.Drawing.Size(142, 32);
             this.bot1Status.TabIndex = 29;
             // 
-            // playerStatus
+            // playerStatusTextLabel
             // 
-            this.playerStatus.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.playerStatus.Location = new System.Drawing.Point(755, 589);
-            this.playerStatus.Name = "playerStatus";
-            this.playerStatus.Size = new System.Drawing.Size(163, 32);
-            this.playerStatus.TabIndex = 30;
+            this.playerStatusTextLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.playerStatusTextLabel.Location = new System.Drawing.Point(755, 589);
+            this.playerStatusTextLabel.Name = "playerStatusTextLabel";
+            this.playerStatusTextLabel.Size = new System.Drawing.Size(163, 32);
+            this.playerStatusTextLabel.TabIndex = 30;
             // 
             // b2Status
             // 
@@ -327,7 +327,7 @@
             this.Controls.Add(this.textBoxRaise);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.b2Status);
-            this.Controls.Add(this.playerStatus);
+            this.Controls.Add(this.playerStatusTextLabel);
             this.Controls.Add(this.bot1Status);
             this.Controls.Add(this.b3Status);
             this.Controls.Add(this.b4Status);
@@ -337,16 +337,16 @@
             this.Controls.Add(this.textBoxSB);
             this.Controls.Add(this.buttonBB);
             this.Controls.Add(this.bOptions);
-            this.Controls.Add(this.tbPot);
+            this.Controls.Add(this.textBoxPot);
             this.Controls.Add(this.textBoxBot1Chips);
             this.Controls.Add(this.textBoxBot2Chips);
             this.Controls.Add(this.textBoxBot3Chips);
             this.Controls.Add(this.textBoxBot4Chips);
             this.Controls.Add(this.textBoxBot5Chips);
-            this.Controls.Add(this.tbAdd);
+            this.Controls.Add(this.textBoxAdd);
             this.Controls.Add(this.buttonAddChips);
             this.Controls.Add(this.textBoxPlayerChips);
-            this.Controls.Add(this.progressBartTimer);
+            this.Controls.Add(this.progressBarTimer);
             this.Controls.Add(this.buttonRaise);
             this.Controls.Add(this.buttonCall);
             this.Controls.Add(this.buttonCheck);
@@ -366,16 +366,16 @@
         private System.Windows.Forms.Button buttonCheck;
         private System.Windows.Forms.Button buttonCall;
         private System.Windows.Forms.Button buttonRaise;
-        private System.Windows.Forms.ProgressBar progressBartTimer;
+        private System.Windows.Forms.ProgressBar progressBarTimer;
         private System.Windows.Forms.TextBox textBoxPlayerChips;
         private System.Windows.Forms.Button buttonAddChips;
-        private System.Windows.Forms.TextBox tbAdd;
+        private System.Windows.Forms.TextBox textBoxAdd;
         private System.Windows.Forms.TextBox textBoxBot5Chips;
         private System.Windows.Forms.TextBox textBoxBot4Chips;
         private System.Windows.Forms.TextBox textBoxBot3Chips;
         private System.Windows.Forms.TextBox textBoxBot2Chips;
         private System.Windows.Forms.TextBox textBoxBot1Chips;
-        private System.Windows.Forms.TextBox tbPot;
+        private System.Windows.Forms.TextBox textBoxPot;
         private System.Windows.Forms.Button bOptions;
         private System.Windows.Forms.Button buttonBB;
         private System.Windows.Forms.TextBox textBoxSB;
@@ -385,7 +385,7 @@
         private System.Windows.Forms.Label b4Status;
         private System.Windows.Forms.Label b3Status;
         private System.Windows.Forms.Label bot1Status;
-        private System.Windows.Forms.Label playerStatus;
+        private System.Windows.Forms.Label playerStatusTextLabel;
         private System.Windows.Forms.Label b2Status;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxRaise;
