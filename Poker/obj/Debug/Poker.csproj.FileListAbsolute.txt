@@ -28,3 +28,13 @@ C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\obj\Debug\Pok
 C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\obj\Debug\Poker.Form1.resources
 C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\obj\Debug\Poker.Properties.Resources.resources
 C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+G:\TeamWork\PokerGame\Poker\bin\Debug\Poker.exe.config
+G:\TeamWork\PokerGame\Poker\obj\Debug\Poker.exe
+G:\TeamWork\PokerGame\Poker\obj\Debug\Poker.pdb
+G:\TeamWork\PokerGame\Poker\bin\Debug\Poker.exe
+G:\TeamWork\PokerGame\Poker\bin\Debug\Poker.pdb
+G:\TeamWork\PokerGame\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+G:\TeamWork\PokerGame\Poker\obj\Debug\Poker.AddChips.resources
+G:\TeamWork\PokerGame\Poker\obj\Debug\Poker.Form1.resources
+G:\TeamWork\PokerGame\Poker\obj\Debug\Poker.Properties.Resources.resources
+G:\TeamWork\PokerGame\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache

@@ -33,27 +33,35 @@
             this.buttonCheck = new System.Windows.Forms.Button();
             this.buttonCall = new System.Windows.Forms.Button();
             this.buttonRaise = new System.Windows.Forms.Button();
-            this.progressBarTimer = new System.Windows.Forms.ProgressBar();
-            this.textBoxPlayerChips = new System.Windows.Forms.TextBox();
             this.buttonAddChips = new System.Windows.Forms.Button();
+
+            this.progressBarTimer = new System.Windows.Forms.ProgressBar();
+
             this.textBoxAdd = new System.Windows.Forms.TextBox();
-            this.textBoxBot5Chips = new System.Windows.Forms.TextBox();
-            this.textBoxBot4Chips = new System.Windows.Forms.TextBox();
-            this.textBoxBot3Chips = new System.Windows.Forms.TextBox();
-            this.textBoxBot2Chips = new System.Windows.Forms.TextBox();
+            this.textBoxPlayerChips = new System.Windows.Forms.TextBox();
             this.textBoxBot1Chips = new System.Windows.Forms.TextBox();
+            this.textBoxBot2Chips = new System.Windows.Forms.TextBox();
+            this.textBoxBot3Chips = new System.Windows.Forms.TextBox();
+            this.textBoxBot4Chips = new System.Windows.Forms.TextBox();
+            this.textBoxBot5Chips = new System.Windows.Forms.TextBox();
+
             this.textBoxPot = new System.Windows.Forms.TextBox();
+
             this.bOptions = new System.Windows.Forms.Button();
-            this.buttonBB = new System.Windows.Forms.Button();
+
             this.textBoxSB = new System.Windows.Forms.TextBox();
             this.buttonSB = new System.Windows.Forms.Button();
+
             this.textBoxBB = new System.Windows.Forms.TextBox();
-            this.b5Status = new System.Windows.Forms.Label();
-            this.b4Status = new System.Windows.Forms.Label();
-            this.b3Status = new System.Windows.Forms.Label();
-            this.bot1Status = new System.Windows.Forms.Label();
+            this.buttonBB = new System.Windows.Forms.Button();
+
             this.playerStatusTextLabel = new System.Windows.Forms.Label();
+            this.bot1Status = new System.Windows.Forms.Label();
             this.b2Status = new System.Windows.Forms.Label();
+            this.b3Status = new System.Windows.Forms.Label();
+            this.b4Status = new System.Windows.Forms.Label();
+            this.b5Status = new System.Windows.Forms.Label();
+
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxRaise = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -324,33 +332,43 @@
             this.BackgroundImage = global::Poker.Properties.Resources.poker_table___Copy;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1350, 739);
-            this.Controls.Add(this.textBoxRaise);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.b2Status);
+
             this.Controls.Add(this.playerStatusTextLabel);
             this.Controls.Add(this.bot1Status);
+            this.Controls.Add(this.b2Status);
             this.Controls.Add(this.b3Status);
             this.Controls.Add(this.b4Status);
             this.Controls.Add(this.b5Status);
-            this.Controls.Add(this.textBoxBB);
-            this.Controls.Add(this.buttonSB);
-            this.Controls.Add(this.textBoxSB);
-            this.Controls.Add(this.buttonBB);
-            this.Controls.Add(this.bOptions);
+
+            this.Controls.Add(this.textBoxRaise);
+            this.Controls.Add(this.textBoxAdd);
             this.Controls.Add(this.textBoxPot);
+
+            this.Controls.Add(this.label1);
+
+            this.Controls.Add(this.textBoxBB);
+            this.Controls.Add(this.buttonBB);
+
+            this.Controls.Add(this.textBoxSB);
+            this.Controls.Add(this.buttonSB);
+
+            this.Controls.Add(this.bOptions);
+
+            this.Controls.Add(this.textBoxPlayerChips);
             this.Controls.Add(this.textBoxBot1Chips);
             this.Controls.Add(this.textBoxBot2Chips);
             this.Controls.Add(this.textBoxBot3Chips);
             this.Controls.Add(this.textBoxBot4Chips);
             this.Controls.Add(this.textBoxBot5Chips);
-            this.Controls.Add(this.textBoxAdd);
+
             this.Controls.Add(this.buttonAddChips);
-            this.Controls.Add(this.textBoxPlayerChips);
             this.Controls.Add(this.progressBarTimer);
+
             this.Controls.Add(this.buttonRaise);
             this.Controls.Add(this.buttonCall);
             this.Controls.Add(this.buttonCheck);
             this.Controls.Add(this.buttonFold);
+
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "GLS Texas Poker";
@@ -362,33 +380,41 @@
 
         #endregion
 
+        private System.Windows.Forms.Button buttonAddChips;
         private System.Windows.Forms.Button buttonFold;
         private System.Windows.Forms.Button buttonCheck;
         private System.Windows.Forms.Button buttonCall;
         private System.Windows.Forms.Button buttonRaise;
+
         private System.Windows.Forms.ProgressBar progressBarTimer;
-        private System.Windows.Forms.TextBox textBoxPlayerChips;
-        private System.Windows.Forms.Button buttonAddChips;
+
+        private System.Windows.Forms.TextBox textBoxRaise;
         private System.Windows.Forms.TextBox textBoxAdd;
+        private System.Windows.Forms.TextBox textBoxPot;
+
+        private System.Windows.Forms.TextBox textBoxPlayerChips;
         private System.Windows.Forms.TextBox textBoxBot5Chips;
         private System.Windows.Forms.TextBox textBoxBot4Chips;
         private System.Windows.Forms.TextBox textBoxBot3Chips;
         private System.Windows.Forms.TextBox textBoxBot2Chips;
         private System.Windows.Forms.TextBox textBoxBot1Chips;
-        private System.Windows.Forms.TextBox textBoxPot;
+
         private System.Windows.Forms.Button bOptions;
+
+        private System.Windows.Forms.TextBox textBoxBB;
         private System.Windows.Forms.Button buttonBB;
+
         private System.Windows.Forms.TextBox textBoxSB;
         private System.Windows.Forms.Button buttonSB;
-        private System.Windows.Forms.TextBox textBoxBB;
-        private System.Windows.Forms.Label b5Status;
-        private System.Windows.Forms.Label b4Status;
-        private System.Windows.Forms.Label b3Status;
-        private System.Windows.Forms.Label bot1Status;
+
         private System.Windows.Forms.Label playerStatusTextLabel;
+        private System.Windows.Forms.Label bot1Status;
         private System.Windows.Forms.Label b2Status;
+        private System.Windows.Forms.Label b3Status;
+        private System.Windows.Forms.Label b4Status;
+        private System.Windows.Forms.Label b5Status;
+
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxRaise;
 
 
 
