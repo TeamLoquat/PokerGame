@@ -2,7 +2,9 @@
 {
     using System.Windows.Forms;
 
-    public abstract class Player
+    using Poker.Interfaces;
+
+    public abstract class Player : IPlayer
     {
         protected Player(Panel panel, int chips, double type, bool turn, bool foldedTurn, bool hasFolded, string name, System.Windows.Forms.TextBox chipsTextBox, System.Windows.Forms.Label label)
         {
