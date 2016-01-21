@@ -57,10 +57,10 @@
 
             this.playerStatusTextLabel = new System.Windows.Forms.Label();
             this.bot1Status = new System.Windows.Forms.Label();
-            this.b2Status = new System.Windows.Forms.Label();
-            this.b3Status = new System.Windows.Forms.Label();
-            this.b4Status = new System.Windows.Forms.Label();
-            this.b5Status = new System.Windows.Forms.Label();
+            this.bot2Status = new System.Windows.Forms.Label();
+            this.bot3Status = new System.Windows.Forms.Label();
+            this.bot4Status = new System.Windows.Forms.Label();
+            this.bot5Status = new System.Windows.Forms.Label();
 
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxRaise = new System.Windows.Forms.TextBox();
@@ -260,29 +260,29 @@
             this.textBoxBB.TabIndex = 19;
             this.textBoxBB.Text = "500";
             // 
-            // b5Status
+            // bot5Status
             // 
-            this.b5Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.b5Status.Location = new System.Drawing.Point(1012, 589);
-            this.b5Status.Name = "b5Status";
-            this.b5Status.Size = new System.Drawing.Size(152, 32);
-            this.b5Status.TabIndex = 26;
+            this.bot5Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bot5Status.Location = new System.Drawing.Point(1012, 589);
+            this.bot5Status.Name = "bot5Status";
+            this.bot5Status.Size = new System.Drawing.Size(152, 32);
+            this.bot5Status.TabIndex = 26;
             // 
-            // b4Status
+            // bot4Status
             // 
-            this.b4Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.b4Status.Location = new System.Drawing.Point(970, 107);
-            this.b4Status.Name = "b4Status";
-            this.b4Status.Size = new System.Drawing.Size(123, 32);
-            this.b4Status.TabIndex = 27;
+            this.bot4Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bot4Status.Location = new System.Drawing.Point(970, 107);
+            this.bot4Status.Name = "bot4Status";
+            this.bot4Status.Size = new System.Drawing.Size(123, 32);
+            this.bot4Status.TabIndex = 27;
             // 
-            // b3Status
+            // bot3Status
             // 
-            this.b3Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.b3Status.Location = new System.Drawing.Point(755, 107);
-            this.b3Status.Name = "b3Status";
-            this.b3Status.Size = new System.Drawing.Size(125, 32);
-            this.b3Status.TabIndex = 28;
+            this.bot3Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bot3Status.Location = new System.Drawing.Point(755, 107);
+            this.bot3Status.Name = "bot3Status";
+            this.bot3Status.Size = new System.Drawing.Size(125, 32);
+            this.bot3Status.TabIndex = 28;
             // 
             // bot1Status
             // 
@@ -300,12 +300,12 @@
             this.playerStatusTextLabel.Size = new System.Drawing.Size(163, 32);
             this.playerStatusTextLabel.TabIndex = 30;
             // 
-            // b2Status
+            // bot2Status
             // 
-            this.b2Status.Location = new System.Drawing.Point(276, 107);
-            this.b2Status.Name = "b2Status";
-            this.b2Status.Size = new System.Drawing.Size(133, 32);
-            this.b2Status.TabIndex = 31;
+            this.bot2Status.Location = new System.Drawing.Point(276, 107);
+            this.bot2Status.Name = "bot2Status";
+            this.bot2Status.Size = new System.Drawing.Size(133, 32);
+            this.bot2Status.TabIndex = 31;
             // 
             // label1
             // 
@@ -335,10 +335,10 @@
 
             this.Controls.Add(this.playerStatusTextLabel);
             this.Controls.Add(this.bot1Status);
-            this.Controls.Add(this.b2Status);
-            this.Controls.Add(this.b3Status);
-            this.Controls.Add(this.b4Status);
-            this.Controls.Add(this.b5Status);
+            this.Controls.Add(this.bot2Status);
+            this.Controls.Add(this.bot3Status);
+            this.Controls.Add(this.bot4Status);
+            this.Controls.Add(this.bot5Status);
 
             this.Controls.Add(this.textBoxRaise);
             this.Controls.Add(this.textBoxAdd);
@@ -409,10 +409,10 @@
 
         private System.Windows.Forms.Label playerStatusTextLabel;
         private System.Windows.Forms.Label bot1Status;
-        private System.Windows.Forms.Label b2Status;
-        private System.Windows.Forms.Label b3Status;
-        private System.Windows.Forms.Label b4Status;
-        private System.Windows.Forms.Label b5Status;
+        private System.Windows.Forms.Label bot2Status;
+        private System.Windows.Forms.Label bot3Status;
+        private System.Windows.Forms.Label bot4Status;
+        private System.Windows.Forms.Label bot5Status;
 
         private System.Windows.Forms.Label label1;
 

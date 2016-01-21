@@ -4,13 +4,13 @@
 
     public abstract class Player
     {
-        protected Player(Panel panel, int chips, double type, bool turn, bool fTurn, bool hasFolded, string name, System.Windows.Forms.TextBox chipsTextBox, System.Windows.Forms.Label label)
+        protected Player(Panel panel, int chips, double type, bool turn, bool foldedTurn, bool hasFolded, string name, System.Windows.Forms.TextBox chipsTextBox, System.Windows.Forms.Label label)
         {
             this.Panel = panel;
             this.Chips = chips;
             this.Type = type;
             this.Turn = turn;
-            this.FTurn = fTurn;
+            this.FoldedTurn = foldedTurn;
             this.HasFolded = hasFolded;
             this.Name = name;
             this.ChipsTextBox = chipsTextBox;
@@ -36,7 +36,7 @@
 
         public bool Turn { get; set; }
 
-        public bool FTurn { get; set; }
+        public bool FoldedTurn { get; set; }
 
         public System.Windows.Forms.TextBox ChipsTextBox { get; set; }
 
