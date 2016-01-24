@@ -13,7 +13,7 @@ namespace Poker
         static void Main()
         {
 
-           IEngine engine= new Engine();
+           IEngine engine = new Engine();
            engine.Run();
           
             /* Application.EnableVisualStyles();

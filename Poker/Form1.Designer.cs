@@ -1,6 +1,11 @@
 ﻿namespace Poker
 {
+    using System;
     using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using System.Reflection;
+    using System.Windows.Forms;
 
     using Poker.Interfaces;
 
@@ -33,179 +38,121 @@
         /// </summary>
         private void InitializeComponent(IList<IPlayer> playerList)
         {
-            this.buttonFold = new System.Windows.Forms.Button();
-            this.buttonCheck = new System.Windows.Forms.Button();
-            this.buttonCall = new System.Windows.Forms.Button();
-            this.buttonRaise = new System.Windows.Forms.Button();
-            this.buttonAddChips = new System.Windows.Forms.Button();
+            this.progressBarTimer = new ProgressBar();
+            this.textBoxAdd = new TextBox();
+            this.textBoxPot = new TextBox();
+            this.textBoxSB = new TextBox();
+            this.textBoxBB = new TextBox();
+            this.textBoxRaise = new TextBox();
+            this.label1 = new Label();
 
-            this.progressBarTimer = new System.Windows.Forms.ProgressBar();
+            //PLAYERS INITIALIZATION----------------
+            Dictionary<int, List<Point>> locationPointsForPlayers = new Dictionary<int, List<Point>>()
+                                                      {
+                                                          {0, new List<Point>()
+                                                                 {
+                                                                     new Point(755, 563),
+                                                                     new Point(755, 589)
+                                                                 } },
+                                                          {1, new List<Point>()
+                                                                 {
+                                                                     new Point(181, 563),
+                                                                     new Point(181, 589)
+                                                                 } },
+                                                          {2, new List<Point>()
+                                                                 {
+                                                                     new Point(276, 81),
+                                                                     new Point(276, 107)
+                                                                 } },
+                                                          {3, new List<Point>()
+                                                                 {
+                                                                     new Point(755, 81),
+                                                                     new Point(755, 107)
+                                                                 } },
+                                                          {4, new List<Point>()
+                                                                 {
+                                                                     new Point(950, 81),
+                                                                     new Point(950, 107)
+                                                                 } },
+                                                          {5, new List<Point>()
+                                                                 {
+                                                                     new Point(1012, 563),
+                                                                     new Point(1012, 589)
+                                                                 } },
 
-            this.textBoxAdd = new System.Windows.Forms.TextBox();
+                                                      };
 
-            this.textBoxPot = new System.Windows.Forms.TextBox();
-
-            this.bOptions = new System.Windows.Forms.Button();
-
-            this.textBoxSB = new System.Windows.Forms.TextBox();
-            this.buttonSB = new System.Windows.Forms.Button();
-
-            this.textBoxBB = new System.Windows.Forms.TextBox();
-            this.buttonBB = new System.Windows.Forms.Button();
-
+            //vars needeed for automatic IPlayer initialization, they are used by all players
+            var fontForEachPlayer = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            var ChipsTextBoxNameTemplate = "textBox{0}Chips";
+            var statusLabelNameTemplate = "{0}Status";
+            var ChipsTextBoxTextTemplate = "Chips : 0";
+            var SizeTemplate = new System.Drawing.Size(163, 23);
             for (int j = 0; j < playerList.Count; j++)
             {
-                playerList[j].StatusLabel = new System.Windows.Forms.Label();
-                playerList[j].ChipsTextBox = new System.Windows.Forms.TextBox();
-
-                switch (j)
-                {
-                    case 0:
-                        playerList[j].ChipsTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-                        playerList[j].ChipsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                        playerList[j].ChipsTextBox.Location = new System.Drawing.Point(755, 563);
-                        playerList[j].ChipsTextBox.Name = "textBoxPlayerChips";
-                        playerList[j].ChipsTextBox.Size = new System.Drawing.Size(163, 23);
-                        playerList[j].ChipsTextBox.TabIndex = 6;
-                        playerList[j].ChipsTextBox.Text = "Chips : 0";
-
-                        playerList[j].StatusLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-                        playerList[j].StatusLabel.Location = new System.Drawing.Point(755, 589);
-                        playerList[j].StatusLabel.Name = "playerStatusTextLabel";
-                        playerList[j].StatusLabel.Size = new System.Drawing.Size(163, 32);
-                        playerList[j].StatusLabel.TabIndex = 30;
-                        break;
-                    case 1:
-                        playerList[j].ChipsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        playerList[j].ChipsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                        playerList[j].ChipsTextBox.Location = new System.Drawing.Point(181, 563);
-                        playerList[j].ChipsTextBox.Name = "textBoxBot1Chips";
-                        playerList[j].ChipsTextBox.Size = new System.Drawing.Size(142, 23);
-                        playerList[j].ChipsTextBox.TabIndex = 13;
-                        playerList[j].ChipsTextBox.Text = "Chips : 0";
-
-                        playerList[j].StatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        playerList[j].StatusLabel.Location = new System.Drawing.Point(181, 589);
-                        playerList[j].StatusLabel.Name = "bot1Status";
-                        playerList[j].StatusLabel.Size = new System.Drawing.Size(142, 32);
-                        playerList[j].StatusLabel.TabIndex = 29;
-                        break;
-                    case 2:
-                        playerList[j].ChipsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                        playerList[j].ChipsTextBox.Location = new System.Drawing.Point(276, 81);
-                        playerList[j].ChipsTextBox.Name = "textBoxBot2Chips";
-                        playerList[j].ChipsTextBox.Size = new System.Drawing.Size(133, 23);
-                        playerList[j].ChipsTextBox.TabIndex = 12;
-                        playerList[j].ChipsTextBox.Text = "Chips : 0";
-
-                        playerList[j].StatusLabel.Location = new System.Drawing.Point(276, 107);
-                        playerList[j].StatusLabel.Name = "bot2Status";
-                        playerList[j].StatusLabel.Size = new System.Drawing.Size(133, 32);
-                        playerList[j].StatusLabel.TabIndex = 31;
-                        break;
-                    case 3:
-                        playerList[j].ChipsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        playerList[j].ChipsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                        playerList[j].ChipsTextBox.Location = new System.Drawing.Point(755, 81);
-                        playerList[j].ChipsTextBox.Name = "textBoxBot3Chips";
-                        playerList[j].ChipsTextBox.Size = new System.Drawing.Size(125, 23);
-                        playerList[j].ChipsTextBox.TabIndex = 11;
-                        playerList[j].ChipsTextBox.Text = "Chips : 0";
-
-                        playerList[j].StatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        playerList[j].StatusLabel.Location = new System.Drawing.Point(755, 107);
-                        playerList[j].StatusLabel.Name = "bot3Status";
-                        playerList[j].StatusLabel.Size = new System.Drawing.Size(125, 32);
-                        playerList[j].StatusLabel.TabIndex = 28;
-                        break;
-                    case 4:
-                        playerList[j].ChipsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        playerList[j].ChipsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                        playerList[j].ChipsTextBox.Location = new System.Drawing.Point(970, 81);
-                        playerList[j].ChipsTextBox.Name = "textBoxBot4Chips";
-                        playerList[j].ChipsTextBox.Size = new System.Drawing.Size(123, 23);
-                        playerList[j].ChipsTextBox.TabIndex = 10;
-                        playerList[j].ChipsTextBox.Text = "Chips : 0";
-
-                        playerList[j].StatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        playerList[j].StatusLabel.Location = new System.Drawing.Point(970, 107);
-                        playerList[j].StatusLabel.Name = "bot4Status";
-                        playerList[j].StatusLabel.Size = new System.Drawing.Size(123, 32);
-                        playerList[j].StatusLabel.TabIndex = 27;
-                        break;
-                    case 5:
-                        playerList[j].ChipsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        playerList[j].ChipsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                        playerList[j].ChipsTextBox.Location = new System.Drawing.Point(1012, 563);
-                        playerList[j].ChipsTextBox.Name = "textBoxBot5Chips";
-                        playerList[j].ChipsTextBox.Size = new System.Drawing.Size(152, 23);
-                        playerList[j].ChipsTextBox.TabIndex = 9;
-                        playerList[j].ChipsTextBox.Text = "Chips : 0";
-
-                        playerList[j].StatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        playerList[j].StatusLabel.Location = new System.Drawing.Point(1012, 589);
-                        playerList[j].StatusLabel.Name = "bot5Status";
-                        playerList[j].StatusLabel.Size = new System.Drawing.Size(152, 32);
-                        playerList[j].StatusLabel.TabIndex = 26;
-                        break;
-                    default:
-                        break;
-
-
-                }
+                playerList[j].ChipsTextBox.Font = fontForEachPlayer;
+                playerList[j].ChipsTextBox.Name = string.Format(ChipsTextBoxNameTemplate, playerList[j].Name);
+                playerList[j].StatusLabel.Name = string.Format(statusLabelNameTemplate, playerList[j].Name);
+                playerList[j].ChipsTextBox.Text = ChipsTextBoxTextTemplate;
+                playerList[j].ChipsTextBox.Size = SizeTemplate;
+                playerList[j].StatusLabel.Size = SizeTemplate;
+                playerList[j].ChipsTextBox.TabIndex = j;
+                playerList[j].StatusLabel.TabIndex = j + 1;
+                playerList[j].ChipsTextBox.Location = locationPointsForPlayers[j][0];
+                playerList[j].StatusLabel.Location = locationPointsForPlayers[j][1];
             }
-
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxRaise = new System.Windows.Forms.TextBox();
+            //dont know what this is
             this.SuspendLayout();
-            // 
-            // buttonFold
-            // 
-            this.buttonFold.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonFold.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonFold.Location = new System.Drawing.Point(335, 670);
-            this.buttonFold.Name = "buttonFold";
-            this.buttonFold.Size = new System.Drawing.Size(130, 62);
-            this.buttonFold.TabIndex = 0;
-            this.buttonFold.Text = "Fold";
-            this.buttonFold.UseVisualStyleBackColor = true;
-            this.buttonFold.Click += new System.EventHandler(this.ButtonFoldClick);
-            // 
-            // buttonCheck
-            // 
-            this.buttonCheck.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCheck.Location = new System.Drawing.Point(494, 670);
-            this.buttonCheck.Name = "buttonCheck";
-            this.buttonCheck.Size = new System.Drawing.Size(134, 62);
-            this.buttonCheck.TabIndex = 2;
-            this.buttonCheck.Text = "Check";
-            this.buttonCheck.UseVisualStyleBackColor = true;
-            this.buttonCheck.Click += new System.EventHandler(this.ButtonCheckClick);
-            // 
-            // buttonCall
-            // 
-            this.buttonCall.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCall.Location = new System.Drawing.Point(667, 671);
-            this.buttonCall.Name = "buttonCall";
-            this.buttonCall.Size = new System.Drawing.Size(126, 62);
-            this.buttonCall.TabIndex = 3;
-            this.buttonCall.Text = "Call";
-            this.buttonCall.UseVisualStyleBackColor = true;
-            this.buttonCall.Click += new System.EventHandler(this.ButtonCallClick);
-            // 
-            // buttonRaise
-            // 
-            this.buttonRaise.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonRaise.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonRaise.Location = new System.Drawing.Point(835, 671);
-            this.buttonRaise.Name = "buttonRaise";
-            this.buttonRaise.Size = new System.Drawing.Size(124, 62);
-            this.buttonRaise.TabIndex = 4;
-            this.buttonRaise.Text = "Raise";
-            this.buttonRaise.UseVisualStyleBackColor = true;
-            this.buttonRaise.Click += new System.EventHandler(this.ButtonRaiseClick);
+
+            //BUTTONS INITIALIZATION----------------
+            var locationPointsForButtons = new Dictionary<string, Point>()
+                                     {
+                                        {"Fold",new Point(335, 670)},
+                                        {"Check",new Point(494, 670)},
+                                        {"Call",new Point(667, 671)},
+                                        {"Raise",new Point(835, 671)},
+                                        {"AddChips",new Point(12, 707)},
+                                        {"Options",new Point(12, 12)},
+                                        {"BB",new Point(12, 254)},
+                                        {"SB",new Point(12, 199)},
+                                     };
+            //vars needeed for automatic Buttons initialization, they are used by all Buttons
+            var fontTemplate = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+            var backColor = true;
+            var tabIndex = 0;
+            var sizeTemplate = new Size(130, 25);
+
+            foreach (var keyValuePair in this.Buttons)
+            {
+                keyValuePair.Value.Font = fontTemplate;
+                keyValuePair.Value.UseVisualStyleBackColor = backColor;
+                keyValuePair.Value.Name = keyValuePair.Key.ToString();
+                keyValuePair.Value.Text = keyValuePair.Key.ToString();
+                keyValuePair.Value.TabIndex = tabIndex++;
+                keyValuePair.Value.Size = sizeTemplate;
+                keyValuePair.Value.Location = locationPointsForButtons[keyValuePair.Key.ToString()];
+            }
+            //if you find a way to add this to the foreach body do it
+            this.Buttons["Fold"].Anchor = AnchorStyles.Bottom;
+            this.Buttons["Fold"].Click += new System.EventHandler(this.ButtonFoldClick);
+
+            this.Buttons["Check"].Anchor = AnchorStyles.Bottom;
+            this.Buttons["Check"].Click += new System.EventHandler(this.ButtonCheckClick);
+
+            this.Buttons["Call"].Anchor = AnchorStyles.Bottom;
+            this.Buttons["Call"].Click += new System.EventHandler(this.ButtonCallClick);
+
+            this.Buttons["Raise"].Anchor = AnchorStyles.Bottom;
+            this.Buttons["Raise"].Click += new System.EventHandler(this.ButtonRaiseClick);
+
+            this.Buttons["AddChips"].Anchor = ((AnchorStyles.Bottom | AnchorStyles.Left));
+            this.Buttons["AddChips"].Click += new System.EventHandler(this.ButtonAddClick);
+
+            this.Buttons["Options"].Click += new System.EventHandler(this.ButtonSBBBOptionClick);
+
+            this.Buttons["BB"].Click += new System.EventHandler(this.ButtonBigBlincdClick);
+
+            this.Buttons["SB"].Click += new System.EventHandler(this.ButtonSmallBlindClick);
             // 
             // progressBarTimer
             // 
@@ -220,16 +167,7 @@
 
 
             // 
-            // buttonAddChips
-            // 
-            this.buttonAddChips.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonAddChips.Location = new System.Drawing.Point(12, 707);
-            this.buttonAddChips.Name = "buttonAddChips";
-            this.buttonAddChips.Size = new System.Drawing.Size(75, 25);
-            this.buttonAddChips.TabIndex = 7;
-            this.buttonAddChips.Text = "AddChips";
-            this.buttonAddChips.UseVisualStyleBackColor = true;
-            this.buttonAddChips.Click += new System.EventHandler(this.ButtonAddClick);
+
             // 
             // textBoxAdd
             // 
@@ -249,27 +187,7 @@
             this.textBoxPot.Size = new System.Drawing.Size(125, 23);
             this.textBoxPot.TabIndex = 14;
             this.textBoxPot.Text = "0";
-            // 
-            // bOptions
-            // 
-            this.bOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bOptions.Location = new System.Drawing.Point(12, 12);
-            this.bOptions.Name = "bOptions";
-            this.bOptions.Size = new System.Drawing.Size(75, 36);
-            this.bOptions.TabIndex = 15;
-            this.bOptions.Text = "BB/SB";
-            this.bOptions.UseVisualStyleBackColor = true;
-            this.bOptions.Click += new System.EventHandler(this.ButtonSBBBOptionClick);
-            // 
-            // bu
-            // 
-            this.buttonBB.Location = new System.Drawing.Point(12, 254);
-            this.buttonBB.Name = "buttonBB";
-            this.buttonBB.Size = new System.Drawing.Size(75, 23);
-            this.buttonBB.TabIndex = 16;
-            this.buttonBB.Text = "Big Blind";
-            this.buttonBB.UseVisualStyleBackColor = true;
-            this.buttonBB.Click += new System.EventHandler(this.ButtonBigBlincdClick);
+
             // 
             // textBoxSB
             // 
@@ -278,16 +196,6 @@
             this.textBoxSB.Size = new System.Drawing.Size(75, 20);
             this.textBoxSB.TabIndex = 17;
             this.textBoxSB.Text = "250";
-            // 
-            // buttonSB
-            // 
-            this.buttonSB.Location = new System.Drawing.Point(12, 199);
-            this.buttonSB.Name = "buttonSB";
-            this.buttonSB.Size = new System.Drawing.Size(75, 23);
-            this.buttonSB.TabIndex = 18;
-            this.buttonSB.Text = "Small Blind";
-            this.buttonSB.UseVisualStyleBackColor = true;
-            this.buttonSB.Click += new System.EventHandler(this.ButtonSmallBlindClick);
             // 
             // textBoxBB
             // 
@@ -329,7 +237,12 @@
                 this.Controls.Add(player.StatusLabel);
                 this.Controls.Add(player.ChipsTextBox);
             }
-            
+
+            foreach (var keyValuePair in this.Buttons)
+            {
+                this.Controls.Add(keyValuePair.Value);
+            }
+
 
             this.Controls.Add(this.textBoxRaise);
             this.Controls.Add(this.textBoxAdd);
@@ -338,25 +251,13 @@
             this.Controls.Add(this.label1);
 
             this.Controls.Add(this.textBoxBB);
-            this.Controls.Add(this.buttonBB);
-
             this.Controls.Add(this.textBoxSB);
-            this.Controls.Add(this.buttonSB);
 
-            this.Controls.Add(this.bOptions);
-
-            this.Controls.Add(this.buttonAddChips);
             this.Controls.Add(this.progressBarTimer);
-
-            this.Controls.Add(this.buttonRaise);
-            this.Controls.Add(this.buttonCall);
-            this.Controls.Add(this.buttonCheck);
-            this.Controls.Add(this.buttonFold);
 
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "GLS Texas Poker";
-            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.Layout_Change);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,27 +265,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonAddChips;
-        private System.Windows.Forms.Button buttonFold;
-        private System.Windows.Forms.Button buttonCheck;
-        private System.Windows.Forms.Button buttonCall;
-        private System.Windows.Forms.Button buttonRaise;
 
-        private System.Windows.Forms.ProgressBar progressBarTimer;
-
-        private System.Windows.Forms.TextBox textBoxRaise;
-        private System.Windows.Forms.TextBox textBoxAdd;
-        public System.Windows.Forms.TextBox textBoxPot;
-
-        private System.Windows.Forms.Button bOptions;
-
-        private System.Windows.Forms.TextBox textBoxBB;
-        private System.Windows.Forms.Button buttonBB;
-
-        private System.Windows.Forms.TextBox textBoxSB;
-        private System.Windows.Forms.Button buttonSB;
-
-        private System.Windows.Forms.Label label1;
 
 
 
