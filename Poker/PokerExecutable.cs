@@ -4,6 +4,8 @@ using Poker.Interfaces;
 
 namespace Poker
 {
+    using Poker.Factories;
+
     static class PokerExecutable
     {
         /// <summary>
@@ -12,10 +14,12 @@ namespace Poker
         [STAThread]
         static void Main()
         {
+            IHumanFactory humanFactory = new HumanFactory();
+            IBotFactory botFactory = new BotFactory();
+            Database database = new Database(botFactory,humanFactory);
+            IEngine engine = new Engine(database);
+            engine.Run();
 
-           IEngine engine = new Engine();
-           engine.Run();
-          
             /* Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var whatever = new Form1();

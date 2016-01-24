@@ -36,7 +36,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent(IList<IPlayer> playerList)
+        private void InitializeComponent()
         {
             this.progressBarTimer = new ProgressBar();
             this.textBoxAdd = new TextBox();
@@ -46,113 +46,26 @@
             this.textBoxRaise = new TextBox();
             this.label1 = new Label();
 
-            //PLAYERS INITIALIZATION----------------
-            Dictionary<int, List<Point>> locationPointsForPlayers = new Dictionary<int, List<Point>>()
-                                                      {
-                                                          {0, new List<Point>()
-                                                                 {
-                                                                     new Point(755, 563),
-                                                                     new Point(755, 589)
-                                                                 } },
-                                                          {1, new List<Point>()
-                                                                 {
-                                                                     new Point(181, 563),
-                                                                     new Point(181, 589)
-                                                                 } },
-                                                          {2, new List<Point>()
-                                                                 {
-                                                                     new Point(276, 81),
-                                                                     new Point(276, 107)
-                                                                 } },
-                                                          {3, new List<Point>()
-                                                                 {
-                                                                     new Point(755, 81),
-                                                                     new Point(755, 107)
-                                                                 } },
-                                                          {4, new List<Point>()
-                                                                 {
-                                                                     new Point(950, 81),
-                                                                     new Point(950, 107)
-                                                                 } },
-                                                          {5, new List<Point>()
-                                                                 {
-                                                                     new Point(1012, 563),
-                                                                     new Point(1012, 589)
-                                                                 } },
-
-                                                      };
-
-            //vars needeed for automatic IPlayer initialization, they are used by all players
-            var fontForEachPlayer = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            var ChipsTextBoxNameTemplate = "textBox{0}Chips";
-            var statusLabelNameTemplate = "{0}Status";
-            var ChipsTextBoxTextTemplate = "Chips : 0";
-            var SizeTemplate = new System.Drawing.Size(163, 23);
-            for (int j = 0; j < playerList.Count; j++)
-            {
-                playerList[j].ChipsTextBox.Font = fontForEachPlayer;
-                playerList[j].ChipsTextBox.Name = string.Format(ChipsTextBoxNameTemplate, playerList[j].Name);
-                playerList[j].StatusLabel.Name = string.Format(statusLabelNameTemplate, playerList[j].Name);
-                playerList[j].ChipsTextBox.Text = ChipsTextBoxTextTemplate;
-                playerList[j].ChipsTextBox.Size = SizeTemplate;
-                playerList[j].StatusLabel.Size = SizeTemplate;
-                playerList[j].ChipsTextBox.TabIndex = j;
-                playerList[j].StatusLabel.TabIndex = j + 1;
-                playerList[j].ChipsTextBox.Location = locationPointsForPlayers[j][0];
-                playerList[j].StatusLabel.Location = locationPointsForPlayers[j][1];
-            }
+            //DATABASE INITIALIZATION----------------
+            this.Database.Initialize();
+            //if you find a way to add this to the initialization of the database -> be my guest
+            this.Database.Buttons["Fold"].Anchor = AnchorStyles.Bottom;
+            this.Database.Buttons["Fold"].Click += new System.EventHandler(this.ButtonFoldClick);
+            this.Database.Buttons["Check"].Anchor = AnchorStyles.Bottom;
+            this.Database.Buttons["Check"].Click += new System.EventHandler(this.ButtonCheckClick);
+            this.Database.Buttons["Call"].Anchor = AnchorStyles.Bottom;
+            this.Database.Buttons["Call"].Click += new System.EventHandler(this.ButtonCallClick);
+            this.Database.Buttons["Raise"].Anchor = AnchorStyles.Bottom;
+            this.Database.Buttons["Raise"].Click += new System.EventHandler(this.ButtonRaiseClick);
+            this.Database.Buttons["AddChips"].Anchor = ((AnchorStyles.Bottom | AnchorStyles.Left));
+            this.Database.Buttons["AddChips"].Click += new System.EventHandler(this.ButtonAddClick);
+            this.Database.Buttons["Options"].Click += new System.EventHandler(this.ButtonSBBBOptionClick);
+            this.Database.Buttons["BB"].Click += new System.EventHandler(this.ButtonBigBlincdClick);
+            this.Database.Buttons["SB"].Click += new System.EventHandler(this.ButtonSmallBlindClick);
             //dont know what this is
             this.SuspendLayout();
 
-            //BUTTONS INITIALIZATION----------------
-            var locationPointsForButtons = new Dictionary<string, Point>()
-                                     {
-                                        {"Fold",new Point(335, 670)},
-                                        {"Check",new Point(494, 670)},
-                                        {"Call",new Point(667, 671)},
-                                        {"Raise",new Point(835, 671)},
-                                        {"AddChips",new Point(12, 707)},
-                                        {"Options",new Point(12, 12)},
-                                        {"BB",new Point(12, 254)},
-                                        {"SB",new Point(12, 199)},
-                                     };
-            //vars needeed for automatic Buttons initialization, they are used by all Buttons
-            var fontTemplate = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-            var backColor = true;
-            var tabIndex = 0;
-            var sizeTemplate = new Size(130, 25);
-
-            foreach (var keyValuePair in this.Buttons)
-            {
-                keyValuePair.Value.Font = fontTemplate;
-                keyValuePair.Value.UseVisualStyleBackColor = backColor;
-                keyValuePair.Value.Name = keyValuePair.Key.ToString();
-                keyValuePair.Value.Text = keyValuePair.Key.ToString();
-                keyValuePair.Value.TabIndex = tabIndex++;
-                keyValuePair.Value.Size = sizeTemplate;
-                keyValuePair.Value.Location = locationPointsForButtons[keyValuePair.Key.ToString()];
-            }
-            //if you find a way to add this to the foreach body do it
-            this.Buttons["Fold"].Anchor = AnchorStyles.Bottom;
-            this.Buttons["Fold"].Click += new System.EventHandler(this.ButtonFoldClick);
-
-            this.Buttons["Check"].Anchor = AnchorStyles.Bottom;
-            this.Buttons["Check"].Click += new System.EventHandler(this.ButtonCheckClick);
-
-            this.Buttons["Call"].Anchor = AnchorStyles.Bottom;
-            this.Buttons["Call"].Click += new System.EventHandler(this.ButtonCallClick);
-
-            this.Buttons["Raise"].Anchor = AnchorStyles.Bottom;
-            this.Buttons["Raise"].Click += new System.EventHandler(this.ButtonRaiseClick);
-
-            this.Buttons["AddChips"].Anchor = ((AnchorStyles.Bottom | AnchorStyles.Left));
-            this.Buttons["AddChips"].Click += new System.EventHandler(this.ButtonAddClick);
-
-            this.Buttons["Options"].Click += new System.EventHandler(this.ButtonSBBBOptionClick);
-
-            this.Buttons["BB"].Click += new System.EventHandler(this.ButtonBigBlincdClick);
-
-            this.Buttons["SB"].Click += new System.EventHandler(this.ButtonSmallBlindClick);
+            
             // 
             // progressBarTimer
             // 
@@ -232,13 +145,13 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1350, 739);
 
-            foreach (var player in playerList)
+            foreach (var player in this.Database.Players)
             {
                 this.Controls.Add(player.StatusLabel);
                 this.Controls.Add(player.ChipsTextBox);
             }
 
-            foreach (var keyValuePair in this.Buttons)
+            foreach (var keyValuePair in this.Database.Buttons)
             {
                 this.Controls.Add(keyValuePair.Value);
             }
