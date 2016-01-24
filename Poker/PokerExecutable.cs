@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using Poker.Core;
+using Poker.Interfaces;
 
 namespace Poker
 {
-    static class Program
+    static class PokerExecutable
     {
         /// <summary>
         /// The main entry point for the application.
@@ -14,10 +12,14 @@ namespace Poker
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
+
+           IEngine engine= new Engine();
+           engine.Run();
+          
+            /* Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var whatever = new Form1();
-            Application.Run(whatever);
+            Application.Run(whatever);*/
         }
     }
 }

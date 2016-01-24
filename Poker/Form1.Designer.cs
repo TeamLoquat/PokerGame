@@ -4,7 +4,7 @@
 
     using Poker.Interfaces;
 
-    partial class Form1
+    public partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -374,14 +374,7 @@
 
         private System.Windows.Forms.TextBox textBoxRaise;
         private System.Windows.Forms.TextBox textBoxAdd;
-        private System.Windows.Forms.TextBox textBoxPot;
-
-        //private System.Windows.Forms.TextBox textBoxPlayerChips;
-        //private System.Windows.Forms.TextBox textBoxBot5Chips;
-        //private System.Windows.Forms.TextBox textBoxBot4Chips;
-        //private System.Windows.Forms.TextBox textBoxBot3Chips;
-        //private System.Windows.Forms.TextBox textBoxBot2Chips;
-        //private System.Windows.Forms.TextBox textBoxBot1Chips;
+        public System.Windows.Forms.TextBox textBoxPot;
 
         private System.Windows.Forms.Button bOptions;
 

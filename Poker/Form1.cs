@@ -1,4 +1,6 @@
-﻿namespace Poker
+﻿using System.Runtime.CompilerServices;
+
+namespace Poker
 {
     using System;
     using System.Collections.Generic;
@@ -16,19 +18,16 @@
         private const int NumberOfCardsInADeck = 52;
 
         #region Variables
-        // private ProgressBar progressBar = new ProgressBar(); - never used
-        // private int Nm; - never used
+        
+        private  IList<IPlayer> players;
 
-        //public Human Player; //= new Human(new Panel(), 10000,-1,true, false, false,"Player",new TextBox(), new Label());
-        //public Bot   bot1;     //= new Bot(new Panel(), 10000, -1, false, false, false, "Bot 1", new TextBox(), new Label());
-        //public Bot   bot2;     //= new Bot(new Panel(), 10000, -1, false, false, false, "Bot 2", new TextBox(), new Label());
-        //public Bot   bot3;     //= new Bot(new Panel(), 10000, -1, false, false, false, "Bot 3", new TextBox(), new Label());
-        //public Bot   bot4;     //= new Bot(new Panel(), 10000, -1, false, false, false, "Bot 4", new TextBox(), new Label());
-        //public Bot   bot5;     //= new Bot(new Panel(), 10000, -1, false, false, false, "Bot 5", new TextBox(), new Label());
+        public IList<IPlayer> Players
+        {
+            get { return this.players; }
+            set { this.players = value; }
+        }
 
-        public IList<IPlayer> players; 
-
-        private int call;
+        public int call;
         private int foldedPlayers;
         private int Flop;
         private int Turn;
@@ -72,31 +71,11 @@
         private Timer updates;
         
         private Poker.Type sorted;
-
-        /*string[] ImgLocation ={
-                   "Assets\\Cards\\33.png","Assets\\Cards\\22.png",
-                    "Assets\\Cards\\29.png","Assets\\Cards\\21.png",
-                    "Assets\\Cards\\36.png","Assets\\Cards\\17.png",
-                    "Assets\\Cards\\40.png","Assets\\Cards\\16.png",
-                    "Assets\\Cards\\5.png","Assets\\Cards\\47.png",
-                    "Assets\\Cards\\37.png","Assets\\Cards\\13.png",
-                    
-                    "Assets\\Cards\\12.png",
-                    "Assets\\Cards\\8.png","Assets\\Cards\\18.png",
-                    "Assets\\Cards\\15.png","Assets\\Cards\\27.png"};*/
-        
         
         #endregion
 
         public Form1()
-        {
-            //Player = new Human(new Panel(), 10000,-1,true, false, false,"Player",new TextBox(), new Label());
-            //bot1= new Bot(new Panel(), 10000, -1, false, false, false, "Bot 1", new TextBox(), new Label());
-            //bot2= new Bot(new Panel(), 10000, -1, false, false, false, "Bot 2", new TextBox(), new Label());
-            //bot3= new Bot(new Panel(), 10000, -1, false, false, false, "Bot 3", new TextBox(), new Label());
-            //bot4= new Bot(new Panel(), 10000, -1, false, false, false, "Bot 4", new TextBox(), new Label());
-            //bot5= new Bot(new Panel(), 10000, -1, false, false, false, "Bot 5", new TextBox(), new Label());
-
+        { 
             this.call = 500;
             this.foldedPlayers = 5;
             this.Flop = 1;
@@ -134,6 +113,7 @@
             
             this.players = new List<IPlayer>();
             this.players.Add(new Human(new Panel(), 10000, -1, false, false, false, "Player", new TextBox(), new Label()));
+
             for (int j = 0; j < 5; j++)
             {
                 this.players.Add(new Bot(new Panel(), 10000, -1, false, false, false, string.Format("Bot {0}", i + 1), new TextBox(), new Label()));
@@ -206,7 +186,7 @@
             for (i = 0; i < 17; i++)
             {
                 deckImages[i] = Image.FromFile(imagesPathsFromDirectory[i]);
-                string[] charsToRemove = new string[] { "Assets\\Cards\\", ".png" };
+                string[] charsToRemove = new string[] {"Assets\\Cards\\", ".png"};
                 foreach (string str in charsToRemove)
                 {
                     imagesPathsFromDirectory[i] = imagesPathsFromDirectory[i].Replace(str, string.Empty);
@@ -220,7 +200,9 @@
                 this.Controls.Add(cardsHolder[i]);
                 cardsHolder[i].Name = "pb" + i.ToString();
                 await Task.Delay(200);
+
                 #region Throwing Cards
+
                 if (i < 2)
                 {
                     if (cardsHolder[0].Tag != null)
@@ -255,6 +237,7 @@
                         }
 
                         cardsHolder[2].Tag = reserve[2];
+
                         if (!check)
                         {
                             horizontal = 15;
@@ -275,6 +258,7 @@
                         this.players[1].Panel.Height = 150;
                         this.players[1].Panel.Width = 180;
                         this.players[1].Panel.Visible = false;
+
                         if (i == 3)
                         {
                             check = false;
@@ -465,6 +449,7 @@
                     }
 
                     check = true;
+
                     if (cardsHolder[i] != null)
                     {
                         cardsHolder[i].Anchor = AnchorStyles.None;
@@ -475,6 +460,7 @@
                         horizontal += 110;
                     }
                 }
+
                 #endregion
 
                 if (this.players[1].Chips <= 0)
@@ -586,7 +572,8 @@
 
             if (foldedPlayers == 5)
             {
-                DialogResult dialogResult = MessageBox.Show("Would You Like To Play Again ?", "You Won , Congratulations ! ", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Would You Like To Play Again ?",
+                    "You Won , Congratulations ! ", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     Application.Restart();
@@ -609,6 +596,7 @@
                 buttonRaise.Enabled = true;
                 buttonFold.Enabled = true;
             }
+
         }
 
         public async Task Turns()
@@ -994,22 +982,21 @@
             {
                 for (int j = 0; j <= 3; j++)
                 {
-                    if (straight[j] / 4 == straight[j + 1] / 4 && straight[j] / 4 == straight[j + 2] / 4 &&
-                        straight[j] / 4 == straight[j + 3] / 4)
+                    if (straight[j]/4 == straight[j + 1]/4 && straight[j]/4 == straight[j + 2]/4 &&
+                        straight[j]/4 == straight[j + 3]/4)
                     {
                         player.Type = 7;
-                        player.Power = ((straight[j] / 4) * 4) + (player.Type * 100);
-                        win.Add(new Type() { Power = player.Power, Current = 7 });
-                        sorted = win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                        player.Power = ((straight[j]/4)*4) + (player.Type*100);
                     }
 
                     if (straight[j] / 4 == 0 && straight[j + 1] / 4 == 0 && straight[j + 2] / 4 == 0 && straight[j + 3] / 4 == 0)
                     {
                         player.Type = 7;
                         player.Power = (13 * 4) + (player.Type * 100);
-                        win.Add(new Type() { Power = player.Power, Current = 7 });
-                        sorted = win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
+
+                    win.Add(new Type() { Power = player.Power, Current = 7 });
+                    sorted = win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                 }
             }
         }
@@ -1021,7 +1008,8 @@
                 type = player.Power;
                 for (int j = 0; j <= 12; j++)
                 {
-                    var fh = straight.Where(o => o / 4 == j).ToArray();
+                    var fh = straight.Where(q => q / 4 == j).ToArray();
+
                     if (fh.Length == 3 || done)
                     {
                         if (fh.Length == 2)
@@ -1577,7 +1565,7 @@
         {
             if (player.Type >= -1)
             {
-                var op = straight.Select(o => o / 4).Distinct().ToArray();
+                var op = straight.Select(q => q / 4).Distinct().ToArray();
                 for (int j = 0; j < op.Length - 4; j++)
                 {
                     if (op[j] + 4 == op[j + 4])
@@ -1809,24 +1797,24 @@
             if (player.Type >= -1)
             {
                 bool msgbox = false;
-                if (reserve[i] / 4 == reserve[i + 1] / 4)
+
+                if (reserve[i]/4 == reserve[i + 1]/4)
                 {
                     if (!msgbox)
                     {
-                        if (reserve[i] / 4 == 0)
+                        if (reserve[i]/4 == 0)
                         {
                             player.Type = 1;
-                            player.Power = 13 * 4 + player.Type * 100;
-                            win.Add(new Type() { Power = player.Power, Current = 1 });
-                            sorted = win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                            player.Power = 13*4 + player.Type*100;
                         }
                         else
                         {
                             player.Type = 1;
-                            player.Power = (reserve[i + 1] / 4) * 4 + player.Type * 100;
-                            win.Add(new Type() { Power = player.Power, Current = 1 });
-                            sorted = win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                            player.Power = (reserve[i + 1]/4)*4 + player.Type*100;
                         }
+
+                        win.Add(new Type() {Power = player.Power, Current = 1});
+                        sorted = win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                     }
 
                     msgbox = true;
@@ -1842,16 +1830,15 @@
                             {
                                 player.Type = 1;
                                 player.Power = 13 * 4 + reserve[i] / 4 + player.Type * 100;
-                                win.Add(new Type() { Power = player.Power, Current = 1 });
-                                sorted = win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                             }
                             else
                             {
                                 player.Type = 1;
                                 player.Power = (reserve[i + 1] / 4) * 4 + reserve[i] / 4 + player.Type * 100;
-                                win.Add(new Type() { Power = player.Power, Current = 1 });
-                                sorted = win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                             }
+
+                            win.Add(new Type() { Power = player.Power, Current = 1 });
+                            sorted = win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                         }
 
                         msgbox = true;
@@ -1865,18 +1852,17 @@
                             {
                                 player.Type = 1;
                                 player.Power = 13 * 4 + reserve[i + 1] / 4 + player.Type * 100;
-                                win.Add(new Type() { Power = player.Power, Current = 1 });
-                                sorted = win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                             }
                             else
                             {
                                 player.Type = 1;
                                 player.Power = (reserve[tc] / 4) * 4 + reserve[i + 1] / 4 + player.Type * 100;
-                                win.Add(new Type() { Power = player.Power, Current = 1 });
-                                sorted = win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
                             }
-                        }
 
+                            win.Add(new Type() { Power = player.Power, Current = 1 });
+                            sorted = win.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                        }
+                        
                         msgbox = true;
                     }
                 }
@@ -1887,28 +1873,25 @@
         {
             if (player.Type == -1)
             {
-                if (reserve[i] / 4 > reserve[i + 1] / 4)
+                if (reserve[i]/4 > reserve[i + 1]/4)
                 {
                     player.Type = -1;
-                    player.Power = reserve[i] / 4;
-                    win.Add(new Type() { Power = player.Power, Current = -1 });
-                    sorted = win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                    player.Power = reserve[i]/4;
                 }
                 else
                 {
                     player.Type = -1;
-                    player.Power = reserve[i + 1] / 4;
-                    win.Add(new Type() { Power = player.Power, Current = -1 });
-                    sorted = win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                    player.Power = reserve[i + 1]/4;
                 }
 
                 if (reserve[i] / 4 == 0 || reserve[i + 1] / 4 == 0)
                 {
                     player.Type = -1;
                     player.Power = 13;
-                    win.Add(new Type() { Power = player.Power, Current = -1 });
-                    sorted = win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                 }
+
+                win.Add(new Type() { Power = player.Power, Current = -1 });
+                sorted = win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
             }
         }
 
@@ -1996,16 +1979,16 @@
                         player.Chips += int.Parse(textBoxPot.Text) / winners;
                         this.players[0].ChipsTextBox.Text = player.Chips.ToString();
 
-                        //pPanel.Visible = true;
+                        
                     }
 
                     //if (checkWinners.Contains("Bot 1"))
-                    //{
-                    //    bot1.Chips += int.Parse(textBoxPot.Text) / winners;
-                    //    textBoxBot1Chips.Text = bot1.Chips.ToString();
+                   // {
+                   //     bot1.Chips += int.Parse(textBoxPot.Text) / winners;
+                   //     textBoxBot1Chips.Text = bot1.Chips.ToString();
 
-                    //    //b1Panel.Visible = true;
-                    //}
+                        //b1Panel.Visible = true;
+                  //  }
 
                     //if (checkWinners.Contains("Bot 2"))
                     //{
@@ -2594,14 +2577,14 @@
         {
             int magicNumber1 = 20;
             int magicNumber2 = 25;
-            HP(bot, 20, 25);
+            HP(bot, magicNumber1, magicNumber2);
         }
 
         public void PairTable(IPlayer bot)
         {
             int magicNumber1 = 16;
             int magicNumber2 = 25;
-            HP(bot, 16, 25);
+            HP(bot, magicNumber1, magicNumber2);
         }
 
         public void PairHand(IPlayer bot)

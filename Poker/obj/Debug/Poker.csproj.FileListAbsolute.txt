@@ -23,7 +23,6 @@ C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\obj\Debug\Pok
 C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\obj\Debug\Poker.pdb
 C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\bin\Debug\Poker.exe
 C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\bin\Debug\Poker.pdb
-C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
 C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\obj\Debug\Poker.AddChips.resources
 C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\obj\Debug\Poker.Form1.resources
 C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\obj\Debug\Poker.Properties.Resources.resources
