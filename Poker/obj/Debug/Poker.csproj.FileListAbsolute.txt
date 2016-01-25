@@ -47,3 +47,4 @@ G:\TeamWork\newest\PokerGame\Poker\obj\Debug\Poker.AddChips.resources
 G:\TeamWork\newest\PokerGame\Poker\obj\Debug\Poker.Form1.resources
 G:\TeamWork\newest\PokerGame\Poker\obj\Debug\Poker.Properties.Resources.resources
 G:\TeamWork\newest\PokerGame\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache

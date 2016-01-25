@@ -10,10 +10,10 @@ namespace Poker.Core
 {
    public class Engine : IEngine
    {
-       private Database database;
-        public Form1 Form { get; set; }
+       private IDatabase database;
+       public Form1 Form { get; set; }
 
-       public Database Database
+       public IDatabase Database
        {
            get
            {
@@ -31,7 +31,7 @@ namespace Poker.Core
 
         
 
-        public Engine(Database database)
+        public Engine(IDatabase database)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

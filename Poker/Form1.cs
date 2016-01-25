@@ -20,8 +20,8 @@ namespace Poker
 
         #region Variables
 
-        private Database database;
-        public Database Database
+        private IDatabase database;
+        public IDatabase Database
         {
             get
             {
@@ -95,7 +95,7 @@ namespace Poker
 
         #endregion
 
-        public Form1(Database database)
+        public Form1(IDatabase database)
         {
             this.Database = database;
 

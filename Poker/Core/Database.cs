@@ -1,15 +1,14 @@
 ﻿namespace Poker.Core
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
 
     using Poker.Interfaces;
-    using Poker.Models;
 
-    public class Database
+
+    public class Database : IDatabase
     {
         private static readonly List<string> ButtonNames = new List<string>()
                                                        {

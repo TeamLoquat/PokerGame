@@ -16,14 +16,11 @@ namespace Poker
         {
             IHumanFactory humanFactory = new HumanFactory();
             IBotFactory botFactory = new BotFactory();
-            Database database = new Database(botFactory,humanFactory);
+            IDatabase database = new Database(botFactory,humanFactory);
             IEngine engine = new Engine(database);
             engine.Run();
 
-            /* Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            var whatever = new Form1();
-            Application.Run(whatever);*/
+           
         }
     }
 }

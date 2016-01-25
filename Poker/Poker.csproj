@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="Interfaces\IBot.cs" />
     <Compile Include="Interfaces\IBotFactory.cs" />
+    <Compile Include="Interfaces\IDatabase.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Interfaces\IHumanFactory.cs" />
     <Compile Include="Interfaces\IHuman.cs" />
