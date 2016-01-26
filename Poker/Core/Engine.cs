@@ -1,36 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Poker.Interfaces;
-
-namespace Poker.Core
+﻿namespace Poker.Core
 {
-   public class Engine : IEngine
-   {
-       private IDatabase database;
-       public Form1 Form { get; set; }
+    using System;
+    using System.Windows.Forms;
+    using Interfaces;
 
-       public IDatabase Database
-       {
-           get
-           {
-               return this.database;
-           }
-           set
-           {
-               if (value == null)
-               {
-                   throw new ArgumentNullException("Database cannot be null");
-               }
-               this.database = value;
-           }
-       }
+    public class Engine : IEngine
+    {
+        private IDatabase database;
+        public Form1 Form { get; set; }
 
+        public IDatabase Database
+        {
+            get
+            {
+                return this.database;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Database cannot be null");
+                }
+                this.database = value;
+            }
+        }
         
-
         public Engine(IDatabase database)
         {
             Application.EnableVisualStyles();
@@ -43,6 +37,5 @@ namespace Poker.Core
         {
             Application.Run(Form);
         }
-
     }
 }

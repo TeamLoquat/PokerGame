@@ -7,11 +7,13 @@
 
     public class BotFactory : IBotFactory
     {
+        private const int InitialChips = 10000;
+
         public IBot Create(int number)
         {
             var bot = new Bot(
                 new Panel(),
-                10000,
+                InitialChips,
                 -1,
                 false,
                 false,

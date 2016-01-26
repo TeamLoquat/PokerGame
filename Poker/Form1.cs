@@ -17,20 +17,18 @@ namespace Poker
 
     public partial class Form1 : Form
     {
-        
-
         private const int NumberOfCardsInADeck = 52;
 
         #region Variables
 
         private IDatabase database;
+
         public IDatabase Database
         {
             get
             {
                 return this.database;
             }
-
             set
             {
                 this.database = value;
@@ -84,15 +82,12 @@ namespace Poker
 
         public TextBox textBoxPot;
 
-
-
         private ProgressBar progressBarTimer;
 
         private TextBox textBoxRaise;
         private TextBox textBoxAdd;
         private TextBox textBoxBB;
         private TextBox textBoxSB;
-
 
         private Label label1;
 
@@ -137,18 +132,12 @@ namespace Poker
             MaximizeBox = false;
             MinimizeBox = false;
 
-            
-
-            
-
             updates.Start();
 
             InitializeComponent();
 
             this.width = this.Width;
             this.height = this.Height;
-
-
 
             Shuffle(this.Database.Players, this.Database.Buttons);
             this.Database.DisplayPlayerChips();
@@ -164,11 +153,9 @@ namespace Poker
             this.Database.Buttons["BB"].Visible = false;
             this.Database.Buttons["SB"].Visible = false;
             textBoxRaise.Text = (bigBlind * 2).ToString();
-
-
         }
 
-        public async Task Shuffle(IList<IPlayer> playerList, IDictionary<string,Button> Buttons)
+        public async Task Shuffle(IList<IPlayer> playerList, IDictionary<string, Button> Buttons)
         {
             foreach (var player in playerList)
             {
@@ -191,15 +178,13 @@ namespace Poker
             int vertical = 480;
             Random random = new Random();
 
-
-             for (i = imagesPathsFromDirectory.Length; i > 0; i--)  // razmesva testeto
-             {
-                 int j = random.Next(i);
-                 var k = imagesPathsFromDirectory[j];
-                 imagesPathsFromDirectory[j] = imagesPathsFromDirectory[i - 1];
-                 imagesPathsFromDirectory[i - 1] = k;
-             }
-
+            for (i = imagesPathsFromDirectory.Length; i > 0; i--)  // razmesva testeto
+            {
+                int j = random.Next(i);
+                var k = imagesPathsFromDirectory[j];
+                imagesPathsFromDirectory[j] = imagesPathsFromDirectory[i - 1];
+                imagesPathsFromDirectory[i - 1] = k;
+            }
 
             #region Throwing Cards
 
@@ -222,7 +207,7 @@ namespace Poker
                 cardsHolder[i].Name = "pb" + i.ToString();
                 await Task.Delay(200);
 
-              
+
 
                 if (i < 2)
                 {
@@ -244,7 +229,7 @@ namespace Poker
                     playerList[0].Panel.BackColor = Color.DarkBlue;
                     playerList[0].Panel.Height = 150;
                     playerList[0].Panel.Width = 180;
-                    
+
                 }
 
                 if (playerList[1].Chips > 0)
@@ -281,7 +266,7 @@ namespace Poker
                         playerList[1].Panel.BackColor = Color.DarkBlue;
                         playerList[1].Panel.Height = 150;
                         playerList[1].Panel.Width = 180;
-                      
+
                         if (i == 3)
                         {
                             check = false;
@@ -321,8 +306,8 @@ namespace Poker
                         playerList[2].Panel.Height = 150;
                         playerList[2].Panel.Width = 180;
 
-                        
-                        
+
+
 
                         if (i == 5)
                         {
@@ -362,7 +347,7 @@ namespace Poker
                         playerList[3].Panel.BackColor = Color.DarkBlue;
                         playerList[3].Panel.Height = 150;
                         playerList[3].Panel.Width = 180;
-                        
+
                         if (i == 7)
                         {
                             check = false;
@@ -401,7 +386,7 @@ namespace Poker
                         playerList[4].Panel.BackColor = Color.DarkBlue;
                         playerList[4].Panel.Height = 150;
                         playerList[4].Panel.Width = 180;
-                       
+
                         if (i == 9)
                         {
                             check = false;
@@ -440,7 +425,7 @@ namespace Poker
                         playerList[5].Panel.BackColor = Color.DarkBlue;
                         playerList[5].Panel.Height = 150;
                         playerList[5].Panel.Width = 180;
-                       
+
                         if (i == 11)
                         {
                             check = false;
@@ -490,7 +475,7 @@ namespace Poker
                     }
                 }
 
-                #endregion
+            #endregion
 
                 if (playerList[1].Chips <= 0)
                 {
@@ -623,10 +608,8 @@ namespace Poker
                 Buttons["Raise"].Enabled = true;
                 Buttons["Fold"].Enabled = true;
             }
-
         }
 
-       
         public async Task Turns(IList<IPlayer> playerList, IDictionary<string, Button> Buttons)
         {
             #region Rotating
@@ -654,7 +637,7 @@ namespace Poker
 
             if (playerList[0].FoldedTurn || !playerList[0].Turn)
             {
-                await AllIn(playerList,Buttons);
+                await AllIn(playerList, Buttons);
                 if (playerList[0].FoldedTurn && !playerList[0].HasFolded)
                 {
                     if (Buttons["Call"].Text.Contains("All in") == false || Buttons["Raise"].Text.Contains("All in") == false)
@@ -666,7 +649,7 @@ namespace Poker
                     }
                 }
 
-                await CheckRaise(playerList,Buttons,0, 0);
+                await CheckRaise(playerList, Buttons, 0, 0);
                 progressBarTimer.Visible = false;
                 Buttons["Raise"].Enabled = false;
                 Buttons["Call"].Enabled = false;
@@ -700,7 +683,7 @@ namespace Poker
 
                 if (playerList[1].FoldedTurn || !playerList[1].Turn)
                 {
-                    await CheckRaise(playerList,Buttons,1, 1);
+                    await CheckRaise(playerList, Buttons, 1, 1);
                     playerList[2].Turn = true;
                 }
 
@@ -708,7 +691,7 @@ namespace Poker
                 {
                     if (playerList[2].Turn)
                     {
-                        FixCall(playerList[2], 1,Buttons["Call"]);
+                        FixCall(playerList[2], 1, Buttons["Call"]);
                         FixCall(playerList[2], 2, Buttons["Call"]);
                         Rules(4, 5, playerList[2]);
                         MessageBox.Show("Bot 2's Turn");
@@ -730,7 +713,7 @@ namespace Poker
 
                 if (playerList[2].FoldedTurn || !playerList[2].Turn)
                 {
-                    await CheckRaise(playerList,Buttons,2, 2);
+                    await CheckRaise(playerList, Buttons, 2, 2);
                     playerList[3].Turn = true;
                 }
 
@@ -790,7 +773,7 @@ namespace Poker
 
                 if (playerList[4].FoldedTurn || !playerList[4].Turn)
                 {
-                    await CheckRaise(playerList, Buttons,4, 4);
+                    await CheckRaise(playerList, Buttons, 4, 4);
                     playerList[5].Turn = true;
                 }
 
@@ -833,11 +816,11 @@ namespace Poker
                         playerList[0].HasFolded = true;
                     }
                 }
-                #endregion
-                await AllIn(playerList,Buttons);
+            #endregion
+                await AllIn(playerList, Buttons);
                 if (!restart)
                 {
-                    await Turns(playerList,Buttons);
+                    await Turns(playerList, Buttons);
                 }
 
                 restart = false;
@@ -1027,8 +1010,6 @@ namespace Poker
                         win.Add(new Type() { Power = player.Power, Current = 7 });
                         sorted = win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
-
-                 
                 }
             }
         }
@@ -1922,7 +1903,10 @@ namespace Poker
                 }
 
                 win.Add(new Type() { Power = player.Power, Current = -1 });
-                sorted = win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                sorted = win
+                    .OrderByDescending(op1 => op1.Current)
+                    .ThenByDescending(op1 => op1.Power)
+                    .First();
             }
         }
 
@@ -2009,8 +1993,6 @@ namespace Poker
                     {
                         player.Chips += int.Parse(textBoxPot.Text) / winners;
                         playerList[0].ChipsTextBox.Text = player.Chips.ToString();
-
-
                     }
 
                     //if (checkWinners.Contains("Bot 1"))
@@ -2110,7 +2092,6 @@ namespace Poker
         }
 
         public async Task CheckRaise(IList<IPlayer> playerList, IDictionary<string, Button> Buttons, int currentTurn, int raiseTurn)
-
         {
             if (raising)
             {
@@ -2197,16 +2178,17 @@ namespace Poker
                 int count = 0;
                 foreach (var player in playerList)
                 {
-                    if(!player.StatusLabel.Text.Contains("Fold"))
+                    if (!player.StatusLabel.Text.Contains("Fold"))
                     {
                         fixedLast = player.Name;
                         Rules(count, count + 1, player);
                     }
                     count += 2;
                 }
+
                 foreach (var player in playerList)
                 {
-                    Winner(playerList,player, fixedLast);
+                    Winner(playerList, player, fixedLast);
                 }
 
                 restart = true;
@@ -2218,14 +2200,15 @@ namespace Poker
 
                 if (playerList[0].Chips <= 0)
                 {
-                    AddChips f2 = new AddChips();
-                    f2.ShowDialog();
-                    if (f2.a != 0)
+                    AddChips addChipsInstance = new AddChips();
+                    addChipsInstance.ShowDialog();
+                    if (addChipsInstance.ChipsFromTextBoxToBeAdded != 0)
                     {
                         foreach (var player in playerList)
                         {
-                            player.Chips += f2.a;
+                            player.Chips += addChipsInstance.ChipsFromTextBoxToBeAdded;
                         }
+
                         playerList[0].FoldedTurn = false;
                         playerList[0].Turn = true;
                         Buttons["Raise"].Enabled = true;
@@ -2240,7 +2223,6 @@ namespace Poker
                     player.Call = 0;
                     player.Raise = 0;
                 }
-
 
                 last = 0;
                 call = bigBlind;
@@ -2271,8 +2253,8 @@ namespace Poker
 
                 textBoxPot.Text = "0";
                 playerList[0].StatusLabel.Text = string.Empty;
-                await Shuffle(playerList,Buttons);
-                await Turns(playerList,Buttons);
+                await Shuffle(playerList, Buttons);
+                await Turns(playerList, Buttons);
             }
         }
 
@@ -2323,7 +2305,7 @@ namespace Poker
             }
         }
 
-        public async Task AllIn(IList<IPlayer> playerList, IDictionary<string, Button> Buttons )
+        public async Task AllIn(IList<IPlayer> playerList, IDictionary<string, Button> Buttons)
         {
             #region All in
             if (playerList[0].Chips <= 0 && !intsadded)
@@ -2353,7 +2335,7 @@ namespace Poker
 
             if (ints.ToArray().Length == maxLeft)
             {
-                await Finish(playerList,Buttons,2); 
+                await Finish(playerList, Buttons, 2);
             }
             else
             {
@@ -2420,7 +2402,7 @@ namespace Poker
                     cardsHolder[j].Visible = false;
                 }
 
-                await Finish(playerList, Buttons,1);
+                await Finish(playerList, Buttons, 1);
             }
 
             intsadded = false;
@@ -2429,13 +2411,13 @@ namespace Poker
             #region FiveOrLessLeft
             if (abc < 6 && abc > 1 && rounds >= End)
             {
-                await Finish(playerList,Buttons,2);
+                await Finish(playerList, Buttons, 2);
             }
             #endregion
 
         }
 
-        public async Task Finish(IList<IPlayer> playerList,IDictionary<string,Button> Buttons, int n)
+        public async Task Finish(IList<IPlayer> playerList, IDictionary<string, Button> Buttons, int n)
         {
             if (n == 2)
             {
@@ -2454,6 +2436,7 @@ namespace Poker
                 player.Raise = 0;
                 player.StatusLabel.Text = string.Empty;
             }
+
             playerList[0].Turn = true;
 
             call = bigBlind;
@@ -2488,14 +2471,14 @@ namespace Poker
             {
                 AddChips f2 = new AddChips();
                 f2.ShowDialog();
-                if (f2.a != 0)
+                if (f2.ChipsFromTextBoxToBeAdded != 0)
                 {
-                    playerList[0].Chips = f2.a;
-                    playerList[1].Chips += f2.a;
-                    playerList[2].Chips += f2.a;
-                    playerList[3].Chips += f2.a;
-                    playerList[4].Chips += f2.a;
-                    playerList[5].Chips += f2.a;
+                    playerList[0].Chips = f2.ChipsFromTextBoxToBeAdded;
+                    playerList[1].Chips += f2.ChipsFromTextBoxToBeAdded;
+                    playerList[2].Chips += f2.ChipsFromTextBoxToBeAdded;
+                    playerList[3].Chips += f2.ChipsFromTextBoxToBeAdded;
+                    playerList[4].Chips += f2.ChipsFromTextBoxToBeAdded;
+                    playerList[5].Chips += f2.ChipsFromTextBoxToBeAdded;
                     playerList[0].FoldedTurn = false;
                     playerList[0].Turn = true;
                     Buttons["Raise"].Enabled = true;
@@ -2535,9 +2518,10 @@ namespace Poker
                 count += 2;
 
             }
+
             foreach (var player in playerList)
             {
-                Winner(playerList,player, fixedLast);
+                Winner(playerList, player, fixedLast);
             }
         }
 
@@ -2973,7 +2957,6 @@ namespace Poker
         /// <param name="e"></param>
         public void UpdateChipsAmountOnUI(object sender, object e)
         {
-
             for (int j = 0; j < this.Database.Players.Count; j++)
             {
                 this.Database.Players[j].ChipsTextBox.Text = string.Format("Chips : {0} ", this.Database.Players[j].Chips);
@@ -3295,9 +3278,7 @@ namespace Poker
                 MessageBox.Show("The changes have been saved ! They will become available the next hand you play. ");
             }
         } // bBB_Click
-
-
+        
         #endregion
     }
-
 }

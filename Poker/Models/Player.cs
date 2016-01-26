@@ -2,11 +2,11 @@
 {
     using System.Windows.Forms;
 
-    using Poker.Interfaces;
+    using Interfaces;
 
     public abstract class Player : IPlayer
     {
-        protected Player(Panel panel, int chips, double type, bool turn, bool foldedTurn, bool hasFolded, string name, System.Windows.Forms.TextBox chipsTextBox, System.Windows.Forms.Label label)
+        protected Player(Panel panel, int chips, double type, bool turn, bool foldedTurn, bool hasFolded, string name, TextBox chipsTextBox, Label label)
         {
             this.Panel = panel;
             this.Chips = chips;
@@ -17,7 +17,7 @@
             this.Name = name;
             this.ChipsTextBox = chipsTextBox;
             this.StatusLabel = label;
-            this.StatusLabel.Text = "";
+            this.StatusLabel.Text = string.Empty;
         }
 
         public string Name { get; set; }
@@ -40,8 +40,8 @@
 
         public bool FoldedTurn { get; set; }
 
-        public System.Windows.Forms.TextBox ChipsTextBox { get; set; }
+        public TextBox ChipsTextBox { get; set; }
 
-        public System.Windows.Forms.Label StatusLabel { get; set; }
+        public Label StatusLabel { get; set; }
     }
 }

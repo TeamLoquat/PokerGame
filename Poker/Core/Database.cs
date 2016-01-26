@@ -5,11 +5,12 @@
     using System.Drawing;
     using System.Windows.Forms;
 
-    using Poker.Interfaces;
-
+    using Interfaces;
 
     public class Database : IDatabase
     {
+        private const int TotalNumberOfBots = 5;
+
         private static readonly List<string> ButtonNames = new List<string>()
                                                        {
                                                            "Fold",
@@ -89,9 +90,9 @@
         {
             this.Players = new List<IPlayer>();
             this.players.Add(this.HumanFactory.Create());
-            for (int j = 0; j < 5; j++)
+            for (int numberOfBot = 1; numberOfBot <= TotalNumberOfBots; numberOfBot++)
             {
-                this.players.Add(this.BotFactory.Create(j + 1));
+                this.players.Add(this.BotFactory.Create(numberOfBot));
             }
 
             var locationPointsForPlayers = new Dictionary<int, List<Point>>()
@@ -141,11 +142,11 @@
                                                };
 
             // vars needeed for automatic IPlayer initialization, they are used by all players
-            var fontForEachPlayer = new System.Drawing.Font(
+            var fontForEachPlayer = new Font(
                 "Microsoft Sans Serif",
                 10F,
-                System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point,
+                FontStyle.Regular,
+                GraphicsUnit.Point,
                 ((byte)(204)));
             var chipsTextBoxNameTemplate = "textBox{0}Chips";
             var statusLabelNameTemplate = "{0}Status";
@@ -175,17 +176,16 @@
             this.Buttons = new Dictionary<string, Button>();
             ButtonNames.ForEach(b => this.Buttons[b] = new Button());
 
-            //BUTTONS INITIALIZATION----------------
             var locationPointsForButtons = new Dictionary<string, Point>()
                                      {
-                                        {"Fold",new Point(335, 670)},
-                                        {"Check",new Point(494, 670)},
-                                        {"Call",new Point(667, 671)},
-                                        {"Raise",new Point(835, 671)},
-                                        {"AddChips",new Point(12, 707)},
-                                        {"Options",new Point(12, 12)},
-                                        {"BB",new Point(12, 254)},
-                                        {"SB",new Point(12, 199)},
+                                        {"Fold", new Point(335, 670)},
+                                        {"Check", new Point(494, 670)},
+                                        {"Call", new Point(667, 671)},
+                                        {"Raise", new Point(835, 671)},
+                                        {"AddChips", new Point(12, 707)},
+                                        {"Options", new Point(12, 12)},
+                                        {"BB", new Point(12, 254)},
+                                        {"SB", new Point(12, 199)}
                                      };
             //vars needeed for automatic Buttons initialization, they are used by all Buttons
             var fontTemplate = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
@@ -197,11 +197,11 @@
             {
                 keyValuePair.Value.Font = fontTemplate;
                 keyValuePair.Value.UseVisualStyleBackColor = backColor;
-                keyValuePair.Value.Name = keyValuePair.Key.ToString();
-                keyValuePair.Value.Text = keyValuePair.Key.ToString();
+                keyValuePair.Value.Name = keyValuePair.Key;
+                keyValuePair.Value.Text = keyValuePair.Key;
                 keyValuePair.Value.TabIndex = tabIndex++;
                 keyValuePair.Value.Size = sizeTemplate;
-                keyValuePair.Value.Location = locationPointsForButtons[keyValuePair.Key.ToString()];
+                keyValuePair.Value.Location = locationPointsForButtons[keyValuePair.Key];
             }
         }
 
@@ -213,7 +213,5 @@
                 player.ChipsTextBox.Text = $"Chips : {player.Chips}";
             }
         }
-
-
     }
 }

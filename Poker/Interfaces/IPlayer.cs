@@ -24,8 +24,8 @@
 
         bool FoldedTurn { get; set; }
 
-        System.Windows.Forms.TextBox ChipsTextBox { get; set; }
+        TextBox ChipsTextBox { get; set; }
 
-        System.Windows.Forms.Label StatusLabel { get; set; }
+        Label StatusLabel { get; set; }
     }
 }

@@ -7,11 +7,13 @@
 
     public class HumanFactory : IHumanFactory
     {
+        private const int InitialChips = 10000;
+
         public IHuman Create()
         {
             var human = new Human(
                 new Panel(),
-                10000,
+                InitialChips,
                 -1,
                 false,
                 false,

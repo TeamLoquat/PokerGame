@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.RanOutOfChipsLabel = new System.Windows.Forms.Label();
             this.buttonAddChips = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.chipsToBeAddedTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // label1
+            // RanOutOfChipsLabel
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(48, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(176, 23);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "You ran out of chips !";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RanOutOfChipsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RanOutOfChipsLabel.Location = new System.Drawing.Point(48, 49);
+            this.RanOutOfChipsLabel.Name = "RanOutOfChipsLabel";
+            this.RanOutOfChipsLabel.Size = new System.Drawing.Size(176, 23);
+            this.RanOutOfChipsLabel.TabIndex = 0;
+            this.RanOutOfChipsLabel.Text = "You ran out of chips !";
+            this.RanOutOfChipsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonAddChips
             // 
@@ -53,7 +53,7 @@
             this.buttonAddChips.TabIndex = 1;
             this.buttonAddChips.Text = "Add Chips";
             this.buttonAddChips.UseVisualStyleBackColor = true;
-            this.buttonAddChips.Click += new System.EventHandler(this.button1_Click);
+            this.buttonAddChips.Click += new System.EventHandler(this.buttonAddChips_Click);
             // 
             // buttonExit
             // 
@@ -64,24 +64,24 @@
             this.buttonExit.TabIndex = 2;
             this.buttonExit.Text = "Exit";
             this.buttonExit.UseVisualStyleBackColor = true;
-            this.buttonExit.Click += new System.EventHandler(this.button2_Click);
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
-            // textBox1
+            // chipsToBeAddedTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(91, 229);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 3;
+            this.chipsToBeAddedTextBox.Location = new System.Drawing.Point(91, 229);
+            this.chipsToBeAddedTextBox.Name = "chipsToBeAddedTextBox";
+            this.chipsToBeAddedTextBox.Size = new System.Drawing.Size(100, 20);
+            this.chipsToBeAddedTextBox.TabIndex = 3;
             // 
             // AddChips
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.chipsToBeAddedTextBox);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.buttonAddChips);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.RanOutOfChipsLabel);
             this.Name = "AddChips";
             this.Text = "You Ran Out Of Chips";
             this.ResumeLayout(false);
@@ -91,9 +91,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label RanOutOfChipsLabel;
         private System.Windows.Forms.Button buttonAddChips;
         private System.Windows.Forms.Button buttonExit;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox chipsToBeAddedTextBox;
     }
 }
