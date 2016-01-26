@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Poker
 {
@@ -16,6 +17,8 @@ namespace Poker
 
     public partial class Form1 : Form
     {
+        
+
         private const int NumberOfCardsInADeck = 52;
 
         #region Variables
@@ -147,7 +150,7 @@ namespace Poker
 
 
 
-            Shuffle(this.Database.Players,this.Database.Buttons);
+            Shuffle(this.Database.Players, this.Database.Buttons);
             this.Database.DisplayPlayerChips();
 
 
@@ -186,20 +189,25 @@ namespace Poker
 
             int horizontal = 580;
             int vertical = 480;
-
             Random random = new Random();
-            for (i = imagesPathsFromDirectory.Length; i > 0; i--)
-            {
-                int j = random.Next(i);
-                var k = imagesPathsFromDirectory[j];
-                imagesPathsFromDirectory[j] = imagesPathsFromDirectory[i - 1];
-                imagesPathsFromDirectory[i - 1] = k;
-            }
+
+
+             for (i = imagesPathsFromDirectory.Length; i > 0; i--)  // razmesva testeto
+             {
+                 int j = random.Next(i);
+                 var k = imagesPathsFromDirectory[j];
+                 imagesPathsFromDirectory[j] = imagesPathsFromDirectory[i - 1];
+                 imagesPathsFromDirectory[i - 1] = k;
+             }
+
+
+            #region Throwing Cards
 
             for (i = 0; i < 17; i++)
             {
                 deckImages[i] = Image.FromFile(imagesPathsFromDirectory[i]);
                 string[] charsToRemove = new string[] { "Assets\\Cards\\", ".png" };
+
                 foreach (string str in charsToRemove)
                 {
                     imagesPathsFromDirectory[i] = imagesPathsFromDirectory[i].Replace(str, string.Empty);
@@ -214,7 +222,7 @@ namespace Poker
                 cardsHolder[i].Name = "pb" + i.ToString();
                 await Task.Delay(200);
 
-                #region Throwing Cards
+              
 
                 if (i < 2)
                 {
@@ -230,13 +238,13 @@ namespace Poker
                     //Holder[i].Dock = DockStyle.Top;
                     cardsHolder[i].Location = new Point(horizontal, vertical);
                     horizontal += cardsHolder[i].Width;
-
+                    playerList[0].Panel.Visible = false;
                     this.Controls.Add(playerList[0].Panel);
                     playerList[0].Panel.Location = new Point(cardsHolder[0].Left - 10, cardsHolder[0].Top - 10);
                     playerList[0].Panel.BackColor = Color.DarkBlue;
                     playerList[0].Panel.Height = 150;
                     playerList[0].Panel.Width = 180;
-                    playerList[0].Panel.Visible = false;
+                    
                 }
 
                 if (playerList[1].Chips > 0)
@@ -265,13 +273,15 @@ namespace Poker
                         cardsHolder[i].Location = new Point(horizontal, vertical);
                         horizontal += cardsHolder[i].Width;
                         cardsHolder[i].Visible = true;
+                        playerList[1].Panel.Visible = false;
+
                         this.Controls.Add(playerList[1].Panel);
+
                         playerList[1].Panel.Location = new Point(cardsHolder[2].Left - 10, cardsHolder[2].Top - 10);
                         playerList[1].Panel.BackColor = Color.DarkBlue;
                         playerList[1].Panel.Height = 150;
                         playerList[1].Panel.Width = 180;
-                        playerList[1].Panel.Visible = false;
-
+                      
                         if (i == 3)
                         {
                             check = false;
@@ -304,12 +314,15 @@ namespace Poker
                         cardsHolder[i].Location = new Point(horizontal, vertical);
                         horizontal += cardsHolder[i].Width;
                         cardsHolder[i].Visible = true;
+                        playerList[2].Panel.Visible = false;
                         this.Controls.Add(playerList[2].Panel);
                         playerList[2].Panel.Location = new Point(cardsHolder[4].Left - 10, cardsHolder[4].Top - 10);
                         playerList[2].Panel.BackColor = Color.DarkBlue;
                         playerList[2].Panel.Height = 150;
                         playerList[2].Panel.Width = 180;
-                        playerList[2].Panel.Visible = false;
+
+                        
+                        
 
                         if (i == 5)
                         {
@@ -343,12 +356,13 @@ namespace Poker
                         cardsHolder[i].Location = new Point(horizontal, vertical);
                         horizontal += cardsHolder[i].Width;
                         cardsHolder[i].Visible = true;
+                        playerList[3].Panel.Visible = false;
                         this.Controls.Add(playerList[3].Panel);
                         playerList[3].Panel.Location = new Point(cardsHolder[6].Left - 10, cardsHolder[6].Top - 10);
                         playerList[3].Panel.BackColor = Color.DarkBlue;
                         playerList[3].Panel.Height = 150;
                         playerList[3].Panel.Width = 180;
-                        playerList[3].Panel.Visible = false;
+                        
                         if (i == 7)
                         {
                             check = false;
@@ -381,12 +395,13 @@ namespace Poker
                         cardsHolder[i].Location = new Point(horizontal, vertical);
                         horizontal += cardsHolder[i].Width;
                         cardsHolder[i].Visible = true;
+                        playerList[4].Panel.Visible = false;
                         this.Controls.Add(playerList[4].Panel);
                         playerList[4].Panel.Location = new Point(cardsHolder[8].Left - 10, cardsHolder[8].Top - 10);
                         playerList[4].Panel.BackColor = Color.DarkBlue;
                         playerList[4].Panel.Height = 150;
                         playerList[4].Panel.Width = 180;
-                        playerList[4].Panel.Visible = false;
+                       
                         if (i == 9)
                         {
                             check = false;
@@ -419,12 +434,13 @@ namespace Poker
                         cardsHolder[i].Location = new Point(horizontal, vertical);
                         horizontal += cardsHolder[i].Width;
                         cardsHolder[i].Visible = true;
+                        playerList[5].Panel.Visible = false;
                         this.Controls.Add(playerList[5].Panel);
                         playerList[5].Panel.Location = new Point(cardsHolder[10].Left - 10, cardsHolder[10].Top - 10);
                         playerList[5].Panel.BackColor = Color.DarkBlue;
                         playerList[5].Panel.Height = 150;
                         playerList[5].Panel.Width = 180;
-                        playerList[5].Panel.Visible = false;
+                       
                         if (i == 11)
                         {
                             check = false;
@@ -580,6 +596,7 @@ namespace Poker
                 timer.Start();
             }
 
+
             if (foldedPlayers == 5)
             {
                 DialogResult dialogResult = MessageBox.Show("Would You Like To Play Again ?",
@@ -597,7 +614,7 @@ namespace Poker
             {
                 foldedPlayers = 5;
             }
-            //TODO: this is useless (i never reaches 17)
+            //TODO: this is useless (i never reaches 17) ! Last iteration i=17 
             if (i == 17)
             {
                 Buttons["Raise"].Enabled = true;
@@ -609,6 +626,7 @@ namespace Poker
 
         }
 
+       
         public async Task Turns(IList<IPlayer> playerList, IDictionary<string, Button> Buttons)
         {
             #region Rotating
@@ -997,16 +1015,20 @@ namespace Poker
                     {
                         player.Type = 7;
                         player.Power = ((straight[j] / 4) * 4) + (player.Type * 100);
+                        win.Add(new Type() { Power = player.Power, Current = 7 });
+                        sorted = win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
 
                     if (straight[j] / 4 == 0 && straight[j + 1] / 4 == 0 && straight[j + 2] / 4 == 0 && straight[j + 3] / 4 == 0)
                     {
                         player.Type = 7;
                         player.Power = (13 * 4) + (player.Type * 100);
+
+                        win.Add(new Type() { Power = player.Power, Current = 7 });
+                        sorted = win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
 
-                    win.Add(new Type() { Power = player.Power, Current = 7 });
-                    sorted = win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                 
                 }
             }
         }
@@ -1814,6 +1836,7 @@ namespace Poker
                         {
                             player.Type = 1;
                             player.Power = 13 * 4 + player.Type * 100;
+
                         }
                         else
                         {
@@ -3023,7 +3046,7 @@ namespace Poker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void ButtonFoldClick(object sender, EventArgs e)
+        public async void ButtonFold_Click(object sender, EventArgs e)
         {
             this.Database.Players[0].StatusLabel.Text = "Fold";
             this.Database.Players[0].Turn = false;
@@ -3036,7 +3059,7 @@ namespace Poker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void ButtonCheckClick(object sender, EventArgs e)
+        public async void ButtonCheck_Click(object sender, EventArgs e)
         {
             if (call <= 0)
             {
@@ -3057,7 +3080,7 @@ namespace Poker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void ButtonCallClick(object sender, EventArgs e)
+        public async void ButtonCall_Click(object sender, EventArgs e)
         {
             Rules(0, 1, this.Database.Players[0]);
             if (this.Database.Players[0].Chips >= call)
@@ -3096,7 +3119,7 @@ namespace Poker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public async void ButtonRaiseClick(object sender, EventArgs e)
+        public async void ButtonRaise_Click(object sender, EventArgs e)
         {
             Rules(0, 1, this.Database.Players[0]);
             int parsedValue;
@@ -3153,7 +3176,7 @@ namespace Poker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ButtonAddClick(object sender, EventArgs e)
+        public void ButtonAdd_Click(object sender, EventArgs e)
         {
             if (textBoxAdd.Text != string.Empty)
             {
@@ -3171,7 +3194,7 @@ namespace Poker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ButtonSBBBOptionClick(object sender, EventArgs e)
+        public void ButtonSBBBOption_Click(object sender, EventArgs e)
         {
             this.textBoxBB.Text = this.bigBlind.ToString();
             this.textBoxSB.Text = this.smallBlind.ToString();
@@ -3197,7 +3220,7 @@ namespace Poker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ButtonSmallBlindClick(object sender, EventArgs e)
+        public void ButtonSmallBlind_Click(object sender, EventArgs e)
         {
             int parsedValue;
             if (this.textBoxSB.Text.Contains(",") || this.textBoxSB.Text.Contains("."))
@@ -3238,7 +3261,7 @@ namespace Poker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ButtonBigBlincdClick(object sender, EventArgs e)
+        public void ButtonBigBlind_Click(object sender, EventArgs e)
         {
             int parsedValue;
             if (this.textBoxBB.Text.Contains(",") || this.textBoxBB.Text.Contains("."))

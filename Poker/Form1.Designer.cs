@@ -1,13 +1,8 @@
 ﻿namespace Poker
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Drawing;
-    using System.Linq;
-    using System.Reflection;
+   
     using System.Windows.Forms;
 
-    using Poker.Interfaces;
 
     public partial class Form1
     {
@@ -50,18 +45,18 @@
             this.Database.Initialize();
             //if you find a way to add this to the initialization of the database -> be my guest
             this.Database.Buttons["Fold"].Anchor = AnchorStyles.Bottom;
-            this.Database.Buttons["Fold"].Click += new System.EventHandler(this.ButtonFoldClick);
+            this.Database.Buttons["Fold"].Click += new System.EventHandler(this.ButtonFold_Click);
             this.Database.Buttons["Check"].Anchor = AnchorStyles.Bottom;
-            this.Database.Buttons["Check"].Click += new System.EventHandler(this.ButtonCheckClick);
+            this.Database.Buttons["Check"].Click += new System.EventHandler(this.ButtonCheck_Click);
             this.Database.Buttons["Call"].Anchor = AnchorStyles.Bottom;
-            this.Database.Buttons["Call"].Click += new System.EventHandler(this.ButtonCallClick);
+            this.Database.Buttons["Call"].Click += new System.EventHandler(this.ButtonCall_Click);
             this.Database.Buttons["Raise"].Anchor = AnchorStyles.Bottom;
-            this.Database.Buttons["Raise"].Click += new System.EventHandler(this.ButtonRaiseClick);
+            this.Database.Buttons["Raise"].Click += new System.EventHandler(this.ButtonRaise_Click);
             this.Database.Buttons["AddChips"].Anchor = ((AnchorStyles.Bottom | AnchorStyles.Left));
-            this.Database.Buttons["AddChips"].Click += new System.EventHandler(this.ButtonAddClick);
-            this.Database.Buttons["Options"].Click += new System.EventHandler(this.ButtonSBBBOptionClick);
-            this.Database.Buttons["BB"].Click += new System.EventHandler(this.ButtonBigBlincdClick);
-            this.Database.Buttons["SB"].Click += new System.EventHandler(this.ButtonSmallBlindClick);
+            this.Database.Buttons["AddChips"].Click += new System.EventHandler(this.ButtonAdd_Click);
+            this.Database.Buttons["Options"].Click += new System.EventHandler(this.ButtonSBBBOption_Click);
+            this.Database.Buttons["BB"].Click += new System.EventHandler(this.ButtonBigBlind_Click);
+            this.Database.Buttons["SB"].Click += new System.EventHandler(this.ButtonSmallBlind_Click);
             //dont know what this is
             this.SuspendLayout();
 
