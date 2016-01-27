@@ -210,7 +210,7 @@
             foreach (var player in this.players)
             {
                 player.ChipsTextBox.Enabled = false;
-                player.ChipsTextBox.Text = $"Chips : {player.Chips}";
+                player.ChipsTextBox.Text = string.Format("Chips : {0}", player.Chips);
             }
         }
     }

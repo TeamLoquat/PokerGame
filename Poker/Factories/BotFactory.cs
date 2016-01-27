@@ -18,7 +18,7 @@
                 false,
                 false,
                 false,
-                $"Bot {number}",
+                string.Format("Bot {0}", number),
                 new TextBox(),
                 new Label());
 
