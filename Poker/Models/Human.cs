@@ -4,7 +4,7 @@
 
     using Poker.Interfaces;
 
-    public class Human: Player , IHuman
+    public class Human : Player, IHuman
     {
         public Human(Panel panel,
             int chips,
@@ -15,9 +15,9 @@
             string name,
             TextBox chipsTextBox,
             Label label)
-            :base(panel,chips,type,turn,foldedTurn,hasFolded,name, chipsTextBox, label)
+            : base(panel, chips, type, turn, foldedTurn, hasFolded, name, chipsTextBox, label)
         {
-            
+
         }
     }
 }

@@ -31,6 +31,7 @@ namespace Poker
             {
                 return this.database;
             }
+
             set
             {
                 this.database = value;
@@ -144,7 +145,6 @@ namespace Poker
             Shuffle(this.Database.Players, this.Database.Buttons);
             this.Database.DisplayPlayerChips();
 
-
             timer.Interval = 1000;   // 1 * 1 * 1000;
             timer.Tick += TimerTick;
             updates.Interval = 100; // 1 * 1 * 100;
@@ -229,7 +229,6 @@ namespace Poker
                     playerList[0].Panel.BackColor = Color.DarkBlue;
                     playerList[0].Panel.Height = 150;
                     playerList[0].Panel.Width = 180;
-
                 }
 
                 if (playerList[1].Chips > 0)
@@ -305,9 +304,6 @@ namespace Poker
                         playerList[2].Panel.BackColor = Color.DarkBlue;
                         playerList[2].Panel.Height = 150;
                         playerList[2].Panel.Width = 180;
-
-
-
 
                         if (i == 5)
                         {

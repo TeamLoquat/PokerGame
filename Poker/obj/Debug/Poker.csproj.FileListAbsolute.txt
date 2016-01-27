@@ -48,3 +48,13 @@ G:\TeamWork\newest\PokerGame\Poker\obj\Debug\Poker.Form1.resources
 G:\TeamWork\newest\PokerGame\Poker\obj\Debug\Poker.Properties.Resources.resources
 G:\TeamWork\newest\PokerGame\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
 C:\Users\krustev.AGRIA\OneDrive\Documents\TeamWork\PokerGame\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\bin\Debug\Poker.exe.config
+E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\obj\Debug\Poker.exe
+E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\obj\Debug\Poker.pdb
+E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\bin\Debug\Poker.exe
+E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\bin\Debug\Poker.pdb
+E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\obj\Debug\Poker.AddChips.resources
+E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\obj\Debug\Poker.Form1.resources
+E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\obj\Debug\Poker.Properties.Resources.resources
+E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache

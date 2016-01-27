@@ -22,6 +22,7 @@
                                                            "BB",
                                                            "SB"
                                                        };
+
         private IList<IPlayer> players;
         private IDictionary<string, Button> buttons;
         private IBotFactory botFactory;
@@ -187,7 +188,7 @@
                                         {"BB", new Point(12, 254)},
                                         {"SB", new Point(12, 199)}
                                      };
-            //vars needeed for automatic Buttons initialization, they are used by all Buttons
+            ////vars needeed for automatic Buttons initialization, they are used by all Buttons
             var fontTemplate = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
             var backColor = true;
             var tabIndex = 0;
