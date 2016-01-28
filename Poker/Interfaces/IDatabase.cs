@@ -1,20 +1,39 @@
 ﻿namespace Poker.Interfaces
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// Holds all the players and buttons the game relies on
+    /// </summary>
     public interface IDatabase
     {
-        IList<IPlayer> Players { get; set; }
+        /// <summary>
+        /// Holds all IPlayers in the game
+        /// </summary>
+        IList<IPlayer> Players
+        {
+            get;
+            set;
+        }
 
-        IDictionary<string, Button> Buttons { get; set; }
+        /// <summary>
+        /// Hold all buttons that the game relies on
+        /// </summary>
+        IDictionary<string, Button> Buttons
+        {
+            get;
+            set;
+        }
 
+        /// <summary>
+        /// Initializes the DB
+        /// </summary>
         void Initialize();
 
+        /// <summary>
+        /// displays chips of all the players in the database
+        /// </summary>
         void DisplayPlayerChips();
     }
 }

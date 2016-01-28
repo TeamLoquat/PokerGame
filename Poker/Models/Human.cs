@@ -3,10 +3,16 @@
     using System.Windows.Forms;
 
     using Poker.Interfaces;
-
+    /// <summary>
+    /// represents a human
+    /// </summary>
     public class Human : Player, IHuman
     {
-        public Human(Panel panel,
+        /// <summary>
+        /// Initializes an instance of Human
+        /// </summary>
+        public Human(
+            Panel panel,
             int chips,
             double type,
             bool turn,

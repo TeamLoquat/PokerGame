@@ -5,10 +5,21 @@
     using Poker.Interfaces;
     using Poker.Models;
 
+    /// <summary>
+    /// Bot factories can raise objects of type Bot
+    /// </summary>
     public class BotFactory : IBotFactory
     {
+        /// <summary>
+        /// all bots start with the same number of chips
+        /// </summary>
         private const int InitialChips = 10000;
 
+        /// <summary>
+        /// creates an instane of type IBot
+        /// </summary>
+        /// <param name="number">bot id</param>
+        /// <returns></returns>
         public IBot Create(int number)
         {
             var bot = new Bot(

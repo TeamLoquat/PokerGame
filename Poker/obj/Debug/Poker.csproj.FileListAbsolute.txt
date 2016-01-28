@@ -58,3 +58,6 @@ E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\obj\Debug\Poke
 E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\obj\Debug\Poker.Form1.resources
 E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\obj\Debug\Poker.Properties.Resources.resources
 E:\Softuni\4-High-Quality Code\Team Project-PokerGame\trunk\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+G:\New folder\PokerGame\Poker\bin\Debug\Poker.exe.config
+G:\New folder\PokerGame\Poker\obj\Debug\Poker.exe
+G:\New folder\PokerGame\Poker\obj\Debug\Poker.pdb

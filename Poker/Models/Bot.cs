@@ -4,8 +4,14 @@
 
     using Poker.Interfaces;
 
+    /// <summary>
+    /// represents a basic bot
+    /// </summary>
     public class Bot : Player, IBot
     {
+        /// <summary>
+        /// Initializes an instance of Bot
+        /// </summary>
         public Bot(
             Panel panel,
             int chips,
